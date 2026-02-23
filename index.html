@@ -1,0 +1,1093 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Logo Design pour Restaurants | Logoexpanse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a; --white: #ffffff; --off-white: #f5f4f0; --cream: #faf9f6;
+    --accent: #c8fb4a; --accent-dark: #a8d828; --gray: #6b6b6b;
+    --light-gray: #e8e6e1; --border: #e0ddd6;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background: var(--white); color: var(--black); overflow-x: hidden; line-height: 1.6; }
+
+  /* ═══════════════════════════════
+     SYSTÈME MEDIA UNIVERSEL
+  ═══════════════════════════════ */
+  .media-wrap {
+    width: 100%; height: 100%; position: relative; overflow: hidden;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .media-wrap img, .media-wrap video {
+    width: 100%; height: 100%; object-fit: cover; display: block; position: relative; z-index: 1;
+  }
+  .media-fallback {
+    position: absolute; inset: 0; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 6px;
+    font-family: var(--font-serif); font-size: 14px; color: rgba(0,0,0,0.22);
+    background: linear-gradient(135deg, #e8e6e1, #d8d5ce); z-index: 0;
+  }
+  .media-fallback span { font-size: 28px; }
+  .media-fallback.dark {
+    background: linear-gradient(135deg, #1a1a1a, #2a2a2a); color: rgba(255,255,255,0.2);
+  }
+  /* Feature card icon/image box */
+  .feat-media {
+    width: 64px; height: 64px; border-radius: 14px; overflow: hidden;
+    background: var(--off-white); margin-bottom: 20px; flex-shrink: 0;
+    display: flex; align-items: center; justify-content: center; font-size: 26px;
+  }
+  .feat-media img, .feat-media video { width: 100%; height: 100%; object-fit: cover; border-radius: 14px; display: block; }
+
+  /* ══ FLASH BANNER ══ */
+  .flash-banner {
+    background: var(--black); color: var(--white); text-align: center;
+    padding: 10px 20px; font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+    display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+  }
+  .flash-banner .code-pill {
+    background: var(--accent); color: var(--black); padding: 3px 12px;
+    border-radius: 20px; font-weight: 700; font-size: 12px; cursor: pointer; transition: opacity 0.2s;
+  }
+  .flash-banner .code-pill:hover { opacity: 0.8; }
+
+  /* ══ NAVBAR ══ */
+  nav.main-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px;
+  }
+  .nav-logo { font-family: var(--font-serif); font-size: 22px; font-weight: 400; letter-spacing: -0.02em; color: var(--black); text-decoration: none; }
+  .nav-links { display: flex; align-items: center; gap: 28px; list-style: none; }
+  .nav-links a { text-decoration: none; color: var(--gray); font-size: 14px; font-weight: 400; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--black); }
+  .nav-cta { background: var(--black); color: var(--white) !important; padding: 10px 22px; border-radius: 100px; font-weight: 600 !important; text-decoration: none; transition: background 0.2s, transform 0.15s; }
+  .nav-cta:hover { background: #222 !important; transform: translateY(-1px); }
+
+  /* ══ HERO ══ */
+  .hero { background: var(--cream); text-align: center; padding: 100px 20px 80px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background: radial-gradient(ellipse 80% 55% at 50% 0%, rgba(200,251,74,0.18) 0%, transparent 68%); pointer-events: none; }
+  .spots-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--white); border: 1px solid var(--border); border-radius: 100px; padding: 6px 16px; font-size: 13px; font-weight: 500; margin-bottom: 28px; color: var(--black); }
+  .spots-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+  @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.35} }
+  .hero-stars { display: flex; align-items: center; justify-content: center; gap: 8px; font-size: 13px; color: var(--gray); margin-bottom: 36px; }
+  .stars { color: #f59e0b; font-size: 16px; letter-spacing: 2px; }
+  .hero h1 { font-family: var(--font-serif); font-size: clamp(42px,7vw,86px); font-weight: 400; line-height: 1.05; letter-spacing: -0.03em; max-width: 920px; margin: 0 auto 24px; }
+  .hero h1 em { font-style: italic; color: var(--gray); }
+  .hero-sub { font-size: 17px; color: var(--gray); max-width: 560px; margin: 0 auto 40px; line-height: 1.7; }
+  .hero-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { background: var(--black); color: var(--white); padding: 14px 28px; border-radius: 100px; text-decoration: none; font-weight: 600; font-size: 15px; transition: background 0.2s, transform 0.15s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary:hover { background: #222; transform: translateY(-2px); }
+  .btn-secondary { background: var(--white); color: var(--black); padding: 14px 28px; border-radius: 100px; text-decoration: none; font-weight: 500; font-size: 15px; border: 1px solid var(--border); transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-secondary:hover { border-color: var(--black); transform: translateY(-2px); }
+  .customers-count { margin-top: 40px; font-size: 13px; color: var(--gray); display: flex; align-items: center; justify-content: center; gap: 10px; }
+  .avatars { display: flex; }
+  .avatar { width: 28px; height: 28px; border-radius: 50%; border: 2px solid white; margin-left: -8px; }
+  .avatar:first-child { margin-left: 0; }
+  .as-seen-on { margin-top: 48px; display: flex; align-items: center; justify-content: center; gap: 14px; font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; flex-wrap: wrap; }
+  .as-seen-on-divider { width: 1px; height: 16px; background: var(--border); }
+  .badge-pill { display: inline-flex; align-items: center; gap: 6px; border: 1px solid var(--border); border-radius: 100px; padding: 5px 12px; font-size: 12px; font-weight: 500; color: var(--gray); }
+
+  /* ══ LOGO STRIP ══ */
+  .logo-strip { background: var(--cream); padding: 24px 0; overflow: hidden; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); position: relative; }
+  .logo-strip::before,.logo-strip::after { content:''; position:absolute; top:0; bottom:0; width:100px; z-index:2; }
+  .logo-strip::before { left:0; background:linear-gradient(to right,var(--cream),transparent); }
+  .logo-strip::after  { right:0; background:linear-gradient(to left,var(--cream),transparent); }
+  .logo-track { display:flex; animation:scroll-left 28s linear infinite; width:max-content; }
+  @keyframes scroll-left { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+  .logo-item { display:flex; align-items:center; padding:0 40px; min-width:160px; justify-content:center; }
+  .logo-placeholder-text { font-family:var(--font-serif); font-size:18px; color:#bbb; white-space:nowrap; }
+
+  /* ══ SHARED ══ */
+  section { padding: 100px 40px; }
+  .container { max-width: 1200px; margin: 0 auto; }
+  .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gray); margin-bottom: 16px; font-weight: 500; }
+  h2 { font-family: var(--font-serif); font-size: clamp(30px,4.5vw,56px); font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; color: var(--black); }
+
+  /* ══ TRUSTED ══ */
+  .trusted { background: var(--black); color: var(--white); text-align: center; }
+  .trusted h2 { color: var(--white); max-width: 720px; margin: 0 auto 56px; }
+  .case-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 2px; max-width: 1000px; margin: 0 auto 56px; border-radius: 16px; overflow: hidden; }
+  .case-item { aspect-ratio: 4/3; display: block; text-decoration: none; position: relative; overflow: hidden; transition: opacity 0.3s; }
+  .case-item:hover { opacity: 0.85; }
+  .case-item::after { content: 'voir →'; position: absolute; bottom: 14px; left: 14px; font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; z-index: 2; font-weight: 600; }
+
+  /* ══ VALUE PILLS ══ */
+  .value-strip { background: var(--cream); padding: 56px 40px; text-align: center; }
+  .value-strip-label { font-size: 12px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gray); margin-bottom: 24px; }
+  .pills-row { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; }
+  .pill { padding: 9px 22px; border-radius: 100px; font-size: 13px; font-weight: 500; }
+  .pill-dark { background: var(--black); color: var(--white); }
+  .pill-accent { background: var(--accent); color: var(--black); font-weight: 700; }
+
+  /* ══ COMPARISON ══ */
+  .comparison { background: var(--off-white); }
+  .comparison-inner { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; max-width: 860px; margin: 60px auto 0; }
+  .comp-card { background: var(--white); border-radius: 20px; padding: 36px; border: 1px solid var(--border); }
+  .comp-card.featured { background: var(--black); color: var(--white); border-color: var(--black); }
+  .comp-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 8px; }
+  .comp-price { font-family: var(--font-serif); font-size: 34px; margin-bottom: 4px; }
+  .comp-time { font-size: 13px; color: var(--gray); margin-bottom: 28px; }
+  .comp-card.featured .comp-time { color: rgba(255,255,255,0.5); }
+  .comp-features { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .comp-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; font-weight: 500; }
+  .feat-icon { width: 20px; height: 20px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 11px; flex-shrink: 0; }
+  .feat-icon.yes { background: var(--accent); color: var(--black); }
+  .feat-icon.no  { background: #f0f0f0; color: #ccc; }
+  .comp-card.featured .feat-icon.no { background: #2a2a2a; color: #444; }
+
+  /* ══ TESTIMONIAL ══ */
+  .testimonial-strip { background: var(--cream); padding: 80px 40px; text-align: center; }
+  .quote-text { font-family: var(--font-serif); font-size: clamp(19px,2.8vw,30px); font-style: italic; color: var(--black); max-width: 840px; margin: 0 auto 28px; line-height: 1.55; }
+  .quote-author { display: flex; align-items: center; justify-content: center; gap: 12px; font-size: 14px; font-weight: 500; }
+  .author-avatar-wrap { width: 44px; height: 44px; border-radius: 50%; overflow: hidden; flex-shrink: 0; background: linear-gradient(135deg,#c8fb4a,#a0d020); display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 16px; color: var(--black); position: relative; }
+  .author-avatar-wrap .media-wrap { position: absolute; inset: 0; }
+  .author-avatar-initial { position: relative; z-index: 0; }
+  .quote-stars { color: #f59e0b; font-size: 12px; }
+
+  /* ══ PACKAGE FEATURES ══ */
+  .features-section { background: var(--white); }
+  .features-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 2px; margin-top: 56px; background: var(--border); border-radius: 20px; overflow: hidden; }
+  .feat-card { background: var(--white); padding: 36px; transition: background 0.2s; }
+  .feat-card:hover { background: var(--cream); }
+  .feat-card h3 { font-size: 17px; font-weight: 600; margin-bottom: 10px; line-height: 1.3; }
+  .feat-card p { font-size: 14px; color: var(--gray); line-height: 1.65; }
+
+  /* ══ PORTFOLIO ══ */
+  .portfolio { background: var(--cream); }
+  .portfolio-tabs { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 40px; margin-top: 36px; }
+  .tab-btn { background: none; border: 1px solid var(--border); padding: 8px 20px; border-radius: 100px; font-size: 13px; font-weight: 500; cursor: pointer; transition: all 0.2s; font-family: var(--font-sans); color: var(--gray); }
+  .tab-btn.active, .tab-btn:hover { background: var(--black); color: var(--white); border-color: var(--black); }
+  .portfolio-grid { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; }
+  .portfolio-item { aspect-ratio: 4/3; border-radius: 12px; overflow: hidden; position: relative; cursor: pointer; }
+  .portfolio-item .media-wrap { transition: transform 0.4s; height: 100%; }
+  .portfolio-item:hover .media-wrap { transform: scale(1.05); }
+
+  /* ══ HOW IT WORKS ══ */
+  .how-it-works { background: var(--white); }
+  .steps-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 40px; margin-top: 60px; }
+  .step-media { width: 100%; aspect-ratio: 4/3; border-radius: 16px; overflow: hidden; margin-bottom: 28px; background: var(--off-white); }
+  .step-media .media-wrap { height: 100%; }
+  .step-num { font-family: var(--font-serif); font-size: 60px; color: var(--light-gray); line-height: 1; margin-bottom: 12px; font-style: italic; }
+  .step-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--accent-dark); font-weight: 600; margin-bottom: 12px; }
+  .step-card h3 { font-size: 20px; font-weight: 700; margin-bottom: 14px; }
+  .step-card p { font-size: 14px; color: var(--gray); line-height: 1.7; }
+
+  /* ══ REVIEWS ══ */
+  .reviews { background: var(--off-white); }
+  .big-quote { background: var(--white); border-radius: 20px; padding: 44px; border: 1px solid var(--border); margin-bottom: 48px; }
+  .big-quote blockquote { font-family: var(--font-serif); font-size: clamp(17px,2.3vw,24px); font-style: italic; line-height: 1.55; color: var(--black); margin-bottom: 22px; }
+  .big-quote-author { font-size: 14px; font-weight: 700; color: var(--black); }
+  .big-quote-role { font-size: 13px; color: var(--gray); font-weight: 400; }
+  .reviews-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-bottom: 36px; }
+  .review-card { background: var(--white); border: 1px solid var(--border); border-radius: 16px; padding: 24px; }
+  .review-card .stars { color: #f59e0b; font-size: 13px; margin-bottom: 12px; display: block; }
+  .review-card p { font-size: 13px; color: var(--gray); line-height: 1.65; margin-bottom: 16px; }
+  .review-card .reviewer { font-size: 12px; font-weight: 700; color: var(--black); }
+  .review-card .review-date { font-size: 11px; color: #aaa; }
+  .view-all-link { display: inline-flex; align-items: center; gap: 8px; color: var(--black); text-decoration: none; font-weight: 700; font-size: 14px; border-bottom: 1px solid var(--black); padding-bottom: 2px; transition: gap 0.2s; }
+  .view-all-link:hover { gap: 14px; }
+
+  /* ══ PRICING ══ */
+  .pricing { background: var(--cream); }
+  .pricing h2 { text-align: center; margin-bottom: 12px; }
+  .pricing-sub { text-align: center; color: var(--gray); font-size: 16px; max-width: 580px; margin: 0 auto 56px; }
+  .pricing-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; max-width: 1100px; margin: 0 auto; }
+  .price-card { background: var(--white); border: 1px solid var(--border); border-radius: 24px; padding: 36px; position: relative; transition: transform 0.2s, box-shadow 0.2s; }
+  .price-card:hover { transform: translateY(-4px); box-shadow: 0 20px 60px rgba(0,0,0,0.08); }
+  .price-card.popular { background: var(--black); border-color: var(--black); color: var(--white); }
+  .popular-badge { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: var(--black); padding: 4px 18px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; white-space: nowrap; }
+  .price-name { font-size: 13px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 8px; color: var(--gray); }
+  .price-card.popular .price-name { color: rgba(255,255,255,0.5); }
+  .price-amount { font-family: var(--font-serif); font-size: 58px; font-weight: 400; line-height: 1; margin-bottom: 8px; }
+  .price-amount sup { font-size: 22px; vertical-align: super; }
+  .price-desc { font-size: 13px; color: var(--gray); margin-bottom: 24px; line-height: 1.5; min-height: 44px; }
+  .price-card.popular .price-desc { color: rgba(255,255,255,0.55); }
+  .spots-notice { font-size: 12px; font-weight: 700; color: #e74c3c; margin-bottom: 18px; display: flex; align-items: center; gap: 6px; }
+  .price-card.popular .spots-notice { color: #ff6b6b; }
+  .order-btn { display: block; text-align: center; padding: 14px; border-radius: 100px; font-weight: 700; font-size: 15px; text-decoration: none; transition: all 0.2s; margin-bottom: 22px; }
+  .order-btn.dark { background: var(--black); color: var(--white); }
+  .order-btn.dark:hover { background: #222; }
+  .order-btn.light { background: var(--accent); color: var(--black); }
+  .order-btn.light:hover { background: var(--accent-dark); }
+  .money-back { font-size: 12px; color: #22c55e; font-weight: 600; text-align: center; margin-bottom: 22px; display: flex; align-items: center; justify-content: center; gap: 5px; }
+  .price-features { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .price-features li { font-size: 13px; display: flex; align-items: flex-start; gap: 10px; line-height: 1.5; }
+  .check { color: var(--accent-dark); font-size: 14px; flex-shrink: 0; margin-top: 1px; }
+  .price-card.popular .check { color: var(--accent); }
+  .dimmed { color: #ccc; }
+  .price-card.popular .dimmed { color: #444; }
+
+  /* ══ GUARANTEE ══ */
+  .guarantee { background: var(--black); color: var(--white); padding: 100px 40px; text-align: center; }
+  .guarantee-icon { width: 80px; height: 80px; background: var(--accent); border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 36px; margin: 0 auto 32px; }
+  .guarantee h2 { color: var(--white); max-width: 620px; margin: 0 auto 20px; }
+  .guarantee p { color: rgba(255,255,255,0.6); max-width: 560px; margin: 0 auto 52px; font-size: 16px; line-height: 1.7; }
+  .guarantee-reviews { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; max-width: 920px; margin: 0 auto; }
+  .guar-review { background: #161616; border-radius: 16px; padding: 24px; text-align: left; }
+  .guar-review .stars { color: #f59e0b; font-size: 13px; margin-bottom: 12px; display: block; }
+  .guar-review p { font-size: 13px; color: rgba(255,255,255,0.6); line-height: 1.6; margin: 0 0 16px; }
+  .guar-review .reviewer { font-size: 12px; font-weight: 700; color: var(--white); }
+  .guar-review .review-date { font-size: 11px; color: rgba(255,255,255,0.3); }
+
+  /* ══ TEAM ══ */
+  .team { background: var(--white); }
+  .team-sub { color: var(--gray); font-size: 16px; max-width: 500px; margin-bottom: 52px; margin-top: 14px; }
+  .team-scroll { display: flex; gap: 20px; overflow-x: auto; padding-bottom: 12px; scrollbar-width: none; }
+  .team-scroll::-webkit-scrollbar { display: none; }
+  .team-member { flex: 0 0 230px; background: var(--off-white); border-radius: 20px; overflow: hidden; transition: transform 0.2s; }
+  .team-member:hover { transform: translateY(-4px); }
+  .member-photo { width: 100%; aspect-ratio: 1; overflow: hidden; background: linear-gradient(135deg,#e8e6e1,#d0cdc8); position: relative; }
+  .member-photo .media-wrap { position: absolute; inset: 0; height: 100%; }
+  .member-fallback-emoji { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; font-size: 64px; z-index: 0; }
+  .member-info { padding: 20px; }
+  .member-role { font-size: 11px; text-transform: uppercase; letter-spacing: 0.1em; color: var(--gray); margin-bottom: 6px; }
+  .member-name { font-size: 17px; font-weight: 700; margin-bottom: 4px; }
+  .member-tag { font-size: 12px; color: var(--gray); font-style: italic; }
+
+  /* ══ CASE STUDIES ══ */
+  .case-studies { background: var(--cream); }
+  .case-studies-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 36px; }
+  .case-study-card { border-radius: 16px; overflow: hidden; background: var(--white); border: 1px solid var(--border); text-decoration: none; color: var(--black); display: block; transition: transform 0.2s, box-shadow 0.2s; }
+  .case-study-card:hover { transform: translateY(-4px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+  .case-media { aspect-ratio: 16/9; overflow: hidden; position: relative; }
+  .case-media .media-wrap { height: 100%; }
+  .case-content { padding: 20px; }
+  .case-content h3 { font-size: 16px; font-weight: 700; margin-bottom: 6px; }
+  .case-content p { font-size: 13px; color: var(--gray); line-height: 1.55; }
+
+  /* ══ BONUS ══ */
+  .bonus { background: var(--black); color: var(--white); padding: 100px 40px; }
+  .bonus-inner { max-width: 1000px; margin: 0 auto; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .bonus-badge { display: inline-block; background: var(--accent); color: var(--black); padding: 6px 18px; border-radius: 100px; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 24px; }
+  .bonus h2 { color: var(--white); margin-bottom: 20px; }
+  .bonus p { color: rgba(255,255,255,0.55); font-size: 15px; line-height: 1.7; margin-bottom: 28px; }
+  .bonus-list { list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .bonus-list li { display: flex; gap: 12px; font-size: 14px; color: rgba(255,255,255,0.8); line-height: 1.5; }
+  .bonus-list .check { color: var(--accent); }
+  .bonus-media { border-radius: 20px; overflow: hidden; aspect-ratio: 1; background: #161616; position: relative; }
+  .bonus-media .media-wrap { height: 100%; }
+
+  /* ══ FAQ ══ */
+  .faq { background: var(--white); }
+  .faq h2 { margin-bottom: 44px; }
+  .faq-list { max-width: 800px; }
+  .faq-item { border-bottom: 1px solid var(--border); }
+  .faq-question { width: 100%; background: none; border: none; text-align: left; padding: 24px 0; font-size: 16px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: space-between; font-family: var(--font-sans); color: var(--black); transition: color 0.2s; }
+  .faq-question:hover { color: var(--gray); }
+  .faq-icon { width: 28px; height: 28px; border-radius: 50%; border: 1px solid var(--border); display: flex; align-items: center; justify-content: center; font-size: 16px; flex-shrink: 0; transition: all 0.25s; }
+  .faq-item.open .faq-icon { background: var(--black); color: var(--white); border-color: var(--black); transform: rotate(45deg); }
+  .faq-answer { font-size: 14px; color: var(--gray); line-height: 1.75; max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+  .faq-item.open .faq-answer { max-height: 600px; padding-bottom: 24px; }
+  .faq-answer a { color: var(--black); font-weight: 600; }
+
+  /* ══ FOOTER ══ */
+  footer { background: var(--black); color: rgba(255,255,255,0.55); padding: 80px 40px 40px; }
+  .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; max-width: 1200px; margin: 0 auto 56px; }
+  .footer-logo { font-family: var(--font-serif); font-size: 28px; color: var(--white); font-weight: 400; margin-bottom: 16px; display: block; text-decoration: none; }
+  .footer-desc { font-size: 13px; line-height: 1.7; max-width: 280px; }
+  .footer-contact { margin-top: 18px; font-size: 13px; display: flex; flex-direction: column; gap: 8px; }
+  .footer-contact a { color: rgba(255,255,255,0.8); text-decoration: none; border-bottom: 1px solid rgba(255,255,255,0.15); padding-bottom: 1px; transition: color 0.2s; width: fit-content; }
+  .footer-contact a:hover { color: var(--white); }
+  .footer-col h4 { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(255,255,255,0.3); font-weight: 500; margin-bottom: 20px; }
+  .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+  .footer-col ul a { color: rgba(255,255,255,0.65); text-decoration: none; font-size: 14px; transition: color 0.2s; display: inline-block; }
+  .footer-col ul a:hover { color: var(--white); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.08); padding-top: 24px; display: flex; align-items: center; justify-content: space-between; font-size: 12px; flex-wrap: wrap; gap: 12px; }
+  .footer-social { display: flex; align-items: center; gap: 18px; }
+  .footer-social a { color: rgba(255,255,255,0.5); text-decoration: none; font-size: 13px; transition: color 0.2s; }
+  .footer-social a:hover { color: var(--white); }
+
+  /* ══ ANIMATIONS ══ */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
+  .hero .spots-badge     { animation: fadeUp 0.5s 0.1s ease forwards; opacity: 0; }
+  .hero .hero-stars      { animation: fadeUp 0.5s 0.2s ease forwards; opacity: 0; }
+  .hero h1               { animation: fadeUp 0.5s 0.3s ease forwards; opacity: 0; }
+  .hero .hero-sub        { animation: fadeUp 0.5s 0.4s ease forwards; opacity: 0; }
+  .hero .hero-btns       { animation: fadeUp 0.5s 0.5s ease forwards; opacity: 0; }
+  .hero .customers-count { animation: fadeUp 0.5s 0.6s ease forwards; opacity: 0; }
+  .hero .as-seen-on      { animation: fadeUp 0.5s 0.7s ease forwards; opacity: 0; }
+
+  /* ══ RESPONSIVE ══ */
+  @media(max-width:900px){
+    nav.main-nav { padding: 0 20px; }
+    .nav-links { display: none; }
+    section { padding: 60px 20px; }
+    .case-grid,.guarantee-reviews { grid-template-columns: repeat(2,1fr); }
+    .comparison-inner,.pricing-grid,.bonus-inner { grid-template-columns: 1fr; }
+    .steps-grid,.case-studies-grid { grid-template-columns: 1fr; }
+    .portfolio-grid,.reviews-grid { grid-template-columns: repeat(2,1fr); }
+    .footer-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media(max-width:560px){
+    .case-grid,.guarantee-reviews,.portfolio-grid,.reviews-grid { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!--
+╔══════════════════════════════════════════════════════════════════╗
+║  GUIDE RAPIDE — INSÉRER VOS IMAGES / VIDÉOS                     ║
+║  ────────────────────────────────────────────────────────────── ║
+║  Chaque zone remplaçable est marquée par un commentaire :        ║
+║                                                                  ║
+║     ⬇ MEDIA  [nom-de-la-zone]  data-src=""                       ║
+║                                                                  ║
+║  Remplacez la valeur vide de data-src par votre URL :            ║
+║    • Image → data-src="https://example.com/photo.jpg"            ║
+║    • Vidéo → data-src="https://example.com/video.mp4"            ║
+║                                                                  ║
+║  Le script détecte automatiquement image ou vidéo.               ║
+║  Si data-src est vide, le fallback (émoji) reste affiché.        ║
+╚══════════════════════════════════════════════════════════════════╝
+-->
+
+<!-- ══ FLASH BANNER ══ -->
+<div class="flash-banner">
+  <span>⏱</span>
+  <strong>Offre de lancement !</strong>
+  <span>20% de réduction sur tout (offre limitée)</span>
+  <span>Code :</span>
+  <span class="code-pill" onclick="navigator.clipboard.writeText('LAUNCH20').then(()=>{this.textContent='Copié !';setTimeout(()=>this.textContent='LAUNCH20',1500)})">LAUNCH20</span>
+</div>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="main-nav">
+  <a href="#" class="nav-logo">Logoexpanse</a>
+  <ul class="nav-links">
+    <li><a href="#Portfolio">Portfolio</a></li>
+    <li><a href="#How-it-works">Comment ça marche</a></li>
+    <li><a href="#Case-Study">Études de cas</a></li>
+    <li><a href="#FAQ">FAQ</a></li>
+    <li><a href="#Pricing" class="nav-cta">Voir les tarifs</a></li>
+  </ul>
+</nav>
+
+<!-- ══ HERO ══ -->
+<section class="hero">
+  <div class="spots-badge"><span class="spots-dot"></span>Seulement 5 places disponibles aujourd'hui</div>
+  <div class="hero-stars"><span class="stars">★★★★★</span><span>Noté 4.8/5 par plus de 100 restaurants</span></div>
+  <h1>Nous faisons de votre restaurant<br>une <em>marque qui marque les esprits.</em></h1>
+  <p class="hero-sub">Branding professionnel, créé par des humains, livré en 48h.<br>Sans freelances, sans IA, sans complications — juste un design d'exception.</p>
+  <div class="hero-btns">
+    <a href="#Pricing" class="btn-primary">Voir les tarifs ↓</a>
+    <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="btn-secondary">Nous contacter →</a>
+  </div>
+  <div class="customers-count">
+    <div class="avatars">
+      <div class="avatar" style="background:linear-gradient(135deg,#c8fb4a,#a0d020)"></div>
+      <div class="avatar" style="background:linear-gradient(135deg,#fb4ac8,#d020a0)"></div>
+      <div class="avatar" style="background:linear-gradient(135deg,#4ac8fb,#20a0d0)"></div>
+      <div class="avatar" style="background:linear-gradient(135deg,#fbc84a,#d0a020)"></div>
+      <div class="avatar" style="background:linear-gradient(135deg,#c84afb,#a020d0)"></div>
+    </div>
+    + de 300 restaurants nous font confiance
+  </div>
+  <div class="as-seen-on">
+    <div class="badge-pill">🇫🇷 France &amp; Europe</div>
+    <div class="as-seen-on-divider"></div>
+    <div class="badge-pill">✦ Zéro IA</div>
+    <div class="as-seen-on-divider"></div>
+    <div class="badge-pill">🔒 100% garanti</div>
+  </div>
+</section>
+
+<!-- ══ LOGO STRIP ══ -->
+<div class="logo-strip">
+  <div class="logo-track">
+    <div class="logo-item"><span class="logo-placeholder-text">Zum Oberförster</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Le Petit Zinc</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Brasserie Lola</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Nørrebro Bistro</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">La Table du Chef</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Gasthaus Berg</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Café de Flore</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Smørrebrød House</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">L'Ardoise</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Weinstube Kern</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Zum Oberförster</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Le Petit Zinc</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Brasserie Lola</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Nørrebro Bistro</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">La Table du Chef</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Gasthaus Berg</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Café de Flore</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Smørrebrød House</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">L'Ardoise</span></div>
+    <div class="logo-item"><span class="logo-placeholder-text">Weinstube Kern</span></div>
+  </div>
+</div>
+
+<!-- ══ TRUSTED ══ -->
+<section class="trusted" id="Case-Study">
+  <div class="container">
+    <div class="section-label" style="color:rgba(255,255,255,0.35)">+100 – 5 étoiles</div>
+    <h2>320 restaurants ont fait confiance<br>à Logoexpanse pour leur branding</h2>
+    <div class="case-grid">
+
+      <!-- ⬇ MEDIA [case-grid-1]  data-src="https://ibb.co/hFhT5Hhq" → votre image ou vidéo -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-item">
+        <div class="media-wrap" data-src="https://i.ibb.co/5htJDvt7/Capture-d-cran-2026-02-22-213122.png"><div class="media-fallback dark"><span>🍽️</span>Restaurant Français</div></div>
+      </a>
+      <!-- ⬇ MEDIA [case-grid-2] -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-item">
+        <div class="media-wrap" data-src="https://i.ibb.co/dJjMNTf5/Capture-d-cran-2026-02-22-213201.png"><div class="media-fallback dark"><span>🥂</span>Brasserie Moderne</div></div>
+      </a>
+      <!-- ⬇ MEDIA [case-grid-3] -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-item">
+        <div class="media-wrap" data-src="https://i.ibb.co/b5FJzFYL/image.png"><div class="media-fallback dark"><span>🍺</span>Gasthaus Allemand</div></div>
+      </a>
+      <!-- ⬇ MEDIA [case-grid-4] -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-item">
+        <div class="media-wrap" data-src="https://i.ibb.co/RGRwKGNB/Capture-d-cran-2026-02-22-212643.png"><div class="media-fallback dark"><span>🐟</span>Bistro Danois</div></div>
+      </a>
+      <!-- ⬇ MEDIA [case-grid-5] -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-item">
+        <div class="media-wrap" data-src="https://i.ibb.co/h1nNpWMD/Capture-d-cran-2026-02-22-213137.png"><div class="media-fallback dark"><span>👨‍🍳</span>Table Gastronomique</div></div>
+      </a>
+      <!-- ⬇ MEDIA [case-grid-6] -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-item">
+        <div class="media-wrap" data-src="https://i.ibb.co/5X23dKCJ/Capture-d-cran-2026-02-22-213909.png"><div class="media-fallback dark"><span>❄️</span>Café Nordique</div></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ VALUE PILLS ══ -->
+<div class="value-strip">
+  <p class="value-strip-label">Nous croyons qu'un branding exceptionnel est possible sans attendre des semaines.</p>
+  <div class="pills-row">
+    <span class="pill pill-dark">Devenez iconique</span>
+    <span class="pill pill-dark">Paraissez 10x plus grand</span>
+    <span class="pill pill-accent">Lancez-vous plus vite</span>
+    <span class="pill pill-dark">Gagnez la confiance de vos clients</span>
+    <span class="pill pill-dark">Zéro IA, que du talent</span>
+    <span class="pill pill-dark">Top 1% des designers mondiaux</span>
+  </div>
+</div>
+
+<!-- ══ COMPARISON ══ -->
+<section class="comparison">
+  <div class="container">
+    <h2>De l'anonymat au prestige,<br>en <em style="font-family:var(--font-serif);font-style:italic">48 heures.</em></h2>
+    <p style="color:var(--gray);font-size:16px;margin-top:16px">Vous avez construit quelque chose d'exceptionnel — votre identité visuelle doit le refléter.</p>
+    <div class="comparison-inner">
+      <div class="comp-card">
+        <h3>Agence Traditionnelle</h3>
+        <div class="comp-price">5 000 €+</div>
+        <div class="comp-time">1 à 2 mois · Processus long et chronophage</div>
+        <ul class="comp-features">
+          <li><span class="feat-icon no">✕</span>Livraison en 48h</li>
+          <li><span class="feat-icon no">✕</span>Tarif accessible</li>
+          <li><span class="feat-icon no">✕</span>Processus simplifié</li>
+          <li><span class="feat-icon yes">✓</span>Designers experts</li>
+        </ul>
+      </div>
+      <div class="comp-card featured">
+        <h3>Logoexpanse</h3>
+        <div class="comp-price">100 €</div>
+        <div class="comp-time">Livraison en 48h · Commande sans friction</div>
+        <ul class="comp-features">
+          <li><span class="feat-icon yes">✓</span>Designers experts</li>
+          <li><span class="feat-icon yes">✓</span>Délais ultra-rapides</li>
+          <li><span class="feat-icon yes">✓</span>Top 1% mondial des talents design</li>
+          <li><span class="feat-icon yes">✓</span>Processus simple et rapide</li>
+          <li><span class="feat-icon yes">✓</span>Support humain, toujours disponible</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:32px"><a href="#Pricing" class="btn-primary">Découvrir nos offres →</a></div>
+  </div>
+</section>
+
+<!-- ══ QUOTE 1 ══ -->
+<div class="testimonial-strip">
+  <p class="quote-text">« By far the best branding experience we've had for our restaurant. It's like collaborating with a renowned agency, but Logoexpanse creates visuals that perfectly capture the spirit of Zum Oberförster and refines every detail until the ideal result is achieved. I highly recommend them! »</p>
+  <div class="quote-author">
+    <!-- ⬇ MEDIA [avatar-julien]  photo de l'auteur -->
+    <div class="author-avatar-wrap">
+      <span class="author-avatar-initial">J</span>
+      <div class="media-wrap" data-src=""></div>
+    </div>
+    <div>
+      <div style="font-weight:700;font-size:14px">Julien</div>
+      <div style="font-size:12px;color:var(--gray)">Propriétaire du Restaurant Zum Oberförster</div>
+      <div class="quote-stars">★★★★★</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PACKAGE FEATURES ══ -->
+<section class="features-section">
+  <div class="container">
+    <p class="section-label">Tout ce dont votre restaurant a besoin</p>
+    <h2>Tout ce qu'il faut pour votre marque,<br>dans un seul package complet.</h2>
+    <p style="color:var(--gray);font-size:16px;margin-top:16px;max-width:560px">Conçu pour les restaurateurs qui veulent un branding de classe mondiale.</p>
+    <div class="features-grid">
+
+      <!-- ⬇ MEDIA [feature-1]  icône ou image (64×64) -->
+      <div class="feat-card">
+        <div class="feat-media" data-src="">1.</div>
+        <h3>3 concepts uniques</h3>
+        <p>Explorez des directions créatives distinctes, conçues pour capturer l'essence de votre restaurant.</p>
+      </div>
+      <!-- ⬇ MEDIA [feature-2] -->
+      <div class="feat-card">
+        <div class="feat-media" data-src="">2.</div>
+        <h3>Identité de marque complète</h3>
+        <p>Du logo aux couleurs, en passant par la typographie — un univers cohérent créé pour vous.</p>
+      </div>
+      <!-- ⬇ MEDIA [feature-3] -->
+      <div class="feat-card">
+        <div class="feat-media" data-src="">3.</div>
+        <h3>Positionnement &amp; stratégie</h3>
+        <p>Une direction créative claire qui connecte vos visuels à l'histoire de votre restaurant.</p>
+      </div>
+      <!-- ⬇ MEDIA [feature-4] -->
+      <div class="feat-card">
+        <div class="feat-media" data-src="">4.</div>
+        <h3>Charte graphique complète</h3>
+        <p>Tout ce qu'il faut pour garder une identité cohérente sur chaque support.</p>
+      </div>
+      <!-- ⬇ MEDIA [feature-5] -->
+      <div class="feat-card">
+        <div class="feat-media" data-src="">5.</div>
+        <h3>Papeterie &amp; mockups</h3>
+        <p>Cartes de visite, aperçus 3D et mockups réalistes pour rendre votre marque tangible.</p>
+      </div>
+      <!-- ⬇ MEDIA [feature-6] -->
+      <div class="feat-card">
+        <div class="feat-media" data-src="">©️</div>
+        <h3>Fichiers sources &amp; droits</h3>
+        <p>Vous êtes propriétaire de tout — éditable, exportable, pour toujours.</p>
+      </div>
+      <!-- ⬇ MEDIA [feature-7] -->
+      <div class="feat-card">
+        <div class="feat-media" data-src="">📱</div>
+        <h3>Kit réseaux sociaux</h3>
+        <p>Visuels prêts à l'emploi pour Instagram, Facebook et au-delà.</p>
+      </div>
+
+    </div>
+    <div style="text-align:center;margin-top:40px"><a href="#Pricing" class="btn-primary">Découvrir nos offres →</a></div>
+  </div>
+</section>
+
+<!-- ══ QUOTE 2 ══ -->
+<div class="testimonial-strip">
+  <p class="quote-text">« Si vous cherchez un partenaire design qui comprend l'identité de marque d'un restaurant, Logoexpanse est l'équipe qu'il vous faut. Ils n'ont pas seulement dessiné un logo — ils ont défini une identité complète pour notre établissement. »</p>
+  <div class="quote-author">
+    <!-- ⬇ MEDIA [avatar-sophie] -->
+    <div class="author-avatar-wrap">
+      <span class="author-avatar-initial">S</span>
+      <div class="media-wrap" data-src=""></div>
+    </div>
+    <div>
+      <div style="font-weight:700;font-size:14px">Sophie M.</div>
+      <div style="font-size:12px;color:var(--gray)">Restauratrice, Paris</div>
+      <div class="quote-stars">★★★★★</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PORTFOLIO ══ -->
+<section class="portfolio" id="Portfolio">
+  <div class="container">
+    <h2>Nos réalisations récentes</h2>
+    <p style="color:var(--gray);font-size:16px;margin-top:12px">Découvrez quelques-uns de nos derniers projets pour des restaurants à travers l'Europe.</p>
+    <div class="portfolio-tabs">
+      <button class="tab-btn active" onclick="filterPortfolio(this,'all')">Tout voir</button>
+      <button class="tab-btn" onclick="filterPortfolio(this,'fr')">Restaurant Français</button>
+      <button class="tab-btn" onclick="filterPortfolio(this,'de')">Restaurant Allemand</button>
+      <button class="tab-btn" onclick="filterPortfolio(this,'dk')">Restaurant Danois</button>
+    </div>
+    <div class="portfolio-grid" id="portfolioGrid">
+
+      <!-- ⬇ MEDIA [portfolio-fr-1]  Catégorie Français -->
+      <div class="portfolio-item" data-cat="fr">
+        <div class="media-wrap" data-src="https://i.ibb.co/gM6TVQqY/Je-vous-de-voile-un-nouveau-projet-de-branding-packaging-site-e-commerce-Pour-e-tre-honne-te.jpg"><div class="media-fallback"><span>🥐</span>Le Petit Zinc</div></div>
+      </div>
+      <!-- ⬇ MEDIA [portfolio-fr-2] -->
+      <div class="portfolio-item" data-cat="fr">
+        <div class="media-wrap" data-src="https://i.ibb.co/39NWkDJ2/t-l-chargement-14.jpg"><div class="media-fallback"><span>🍷</span>Brasserie Lola</div></div>
+      </div>
+      <!-- ⬇ MEDIA [portfolio-fr-3] -->
+      <div class="portfolio-item" data-cat="fr">
+        <div class="media-wrap" data-src="https://i.ibb.co/tPcBnfq7/Logo-Design-Restaurant-2.jpg"><div class="media-fallback"><span>🧅</span>La Table du Chef</div></div>
+      </div>
+      <!-- ⬇ MEDIA [portfolio-fr-4] -->
+      <div class="portfolio-item" data-cat="fr">
+        <div class="media-wrap" data-src="https://i.ibb.co/PZ2kBRnH/Logo-Design-Restaurant-1.jpg"><div class="media-fallback"><span>🥗</span>Café de Flore</div></div>
+      </div>
+
+      <!-- ⬇ MEDIA [portfolio-de-1]  Catégorie Allemand -->
+      <div class="portfolio-item" data-cat="de">
+        <div class="media-wrap" data-src="https://i.ibb.co/Kccf41tC/Best-Logo-Design-Website-to-Create-a-Stunning-Brand-in-Minutes.jpg"><div class="media-fallback"><span>🍺</span>Zum Oberförster</div></div>
+      </div>
+      <!-- ⬇ MEDIA [portfolio-de-2] -->
+      <div class="portfolio-item" data-cat="de">
+        <div class="media-wrap" data-src="https://i.ibb.co/byFdPBR/Logo-Design-Restaurant.jpg"><div class="media-fallback"><span>🥨</span>Gasthaus Berg</div></div>
+      </div>
+      <!-- ⬇ MEDIA [portfolio-de-3] -->
+      <div class="portfolio-item" data-cat="de">
+        <div class="media-wrap" data-src="https://i.ibb.co/Kp0FXkpQ/Modern-Organic-Boho-Logo-Design-for-Kids-and-Food-Brands.jpg"><div class="media-fallback"><span>🍖</span>Weinstube Kern</div></div>
+      </div>
+      <!-- ⬇ MEDIA [portfolio-de-4] -->
+      <div class="portfolio-item" data-cat="de">
+        <div class="media-wrap" data-src="https://i.ibb.co/4RvbmJKy/t-l-chargement-13.jpg"><div class="media-fallback"><span>🏔️</span>Berghütte</div></div>
+      </div>
+
+      <!-- ⬇ MEDIA [portfolio-dk-1]  Catégorie Danois -->
+      <div class="portfolio-item" data-cat="dk">
+        <div class="media-wrap" data-src="https://i.ibb.co/KcVgw358/yellow-mango-silhouette-cleverly-formed.jpg"><div class="media-fallback"><span>🐟</span>Nørrebro Bistro</div></div>
+      </div>
+      <!-- ⬇ MEDIA [portfolio-dk-2] -->
+      <div class="portfolio-item" data-cat="dk">
+        <div class="media-wrap" data-src="https://i.ibb.co/VczDjByW/Restaurant-Logo-Design-Ideas-for-Your-Brand-Karen-Johsnon.jpg"><div class="media-fallback"><span>🥪</span>Smørrebrød House</div></div>
+      </div>
+      <!-- ⬇ MEDIA [portfolio-dk-3] -->
+      <div class="portfolio-item" data-cat="dk">
+        <div class="media-wrap" data-src="https://i.ibb.co/Y46kQfML/15af84a265f87bf0a389f60bf669b906.jpg"><div class="media-fallback"><span>❄️</span>Hygge Kitchen</div></div>
+      </div>
+      <!-- ⬇ MEDIA [portfolio-dk-4] -->
+      <div class="portfolio-item" data-cat="dk">
+        <div class="media-wrap" data-src="https://i.ibb.co/s0qTRtx/Submark-logo-pour-un-restaurant-gastronomique.jpg"><div class="media-fallback"><span>🌿</span>Nordisk Spisested</div></div>
+      </div>
+
+    </div>
+    <p style="text-align:center;margin-top:28px;font-size:13px;color:var(--gray)">
+      Vos visuels seront intégrés ici. <a href="https://www.instagram.com/Logoexpanse" target="_blank" style="color:var(--black);font-weight:700">Voir notre Instagram →</a>
+    </p>
+  </div>
+</section>
+
+<!-- ══ HOW IT WORKS ══ -->
+<section class="how-it-works" id="How-it-works">
+  <div class="container">
+    <p class="section-label">Un processus remarquablement simple</p>
+    <h2>Un processus remarquablement simple<br>(C'est aussi pour ça qu'on est si rapides.)</h2>
+    <div class="steps-grid">
+
+      <div class="step-card">
+        <!-- ⬇ MEDIA [step-1]  image ou vidéo d'illustration -->
+        <div class="step-media">
+          <div class="media-wrap" data-src="https://i.ibb.co/DD3yzNkv/Vivid-Core-9.png"><div class="media-fallback"><span>📝</span>Brief</div></div>
+        </div>
+        <div class="step-num">1</div>
+        <div class="step-label">Étape #1</div>
+        <h3>Remplissez notre brief</h3>
+        <p>Après + de 300 restaurants accompagnés, nous savons exactement quelles questions poser pour tout comprendre de votre établissement, en un minimum de temps.</p>
+      </div>
+
+      <div class="step-card">
+        <!-- ⬇ MEDIA [step-2] -->
+        <div class="step-media">
+          <div class="media-wrap" data-src="https://i.ibb.co/SX8XzMh8/Chat-GPT-Image-22-f-vr-2026-23-55-40.png"><div class="media-fallback"><span>⚡</span>Design</div></div>
+        </div>
+        <div class="step-num">2</div>
+        <div class="step-label">Étape #2</div>
+        <h3>Recevez vos concepts</h3>
+        <p>Dès réception du brief, notre équipe se lance. Nous étudions votre restaurant, votre cuisine, vos concurrents. On conçoit une esthétique de marque, puis les icônes et la typographie.</p>
+      </div>
+
+      <div class="step-card">
+        <!-- ⬇ MEDIA [step-3] -->
+        <div class="step-media">
+          <div class="media-wrap" data-src="https://i.ibb.co/PZkMjbsL/Chat-GPT-Image-22-f-vr-2026-23-58-42.png"><div class="media-fallback"><span>✅</span>Finalise</div></div>
+        </div>
+        <div class="step-num">3</div>
+        <div class="step-label">Étape #3</div>
+        <h3>Revisez ou finalisez</h3>
+        <p>Vous pouvez accepter le rendu tel quel ou demander des révisions. On travaille jusqu'à ce que vous soyez 100% satisfait. Une fois approuvé, nous livrons tout par e-mail.</p>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ REVIEWS ══ -->
+<section class="reviews">
+  <div class="container">
+    <div class="section-label">+100 – 5 étoiles</div>
+    <h2>320 restaurants ont fait confiance<br>à Logoexpanse pour leur branding</h2>
+    <div class="big-quote" style="margin-top:40px">
+      <blockquote>« By far the best branding experience we've had for our restaurant. It's like collaborating with a renowned agency, but Logoexpanse creates visuals that perfectly capture the spirit of Zum Oberförster and refines every detail until the ideal result is achieved. I highly recommend them! »</blockquote>
+      <div class="big-quote-author">Julien, <span class="big-quote-role">Propriétaire du Restaurant Zum Oberförster</span></div>
+    </div>
+    <div class="big-quote" style="background:var(--black);color:var(--white)">
+      <blockquote style="color:rgba(255,255,255,0.9)">« Notre logo de restaurant était générique, sans âme. Logoexpanse a tout transformé. En 48h, on avait une identité qui ressemble vraiment à qui on est. Nos clients le remarquent, et notre taux de réservation a augmenté. »</blockquote>
+      <div class="big-quote-author" style="color:white">Thomas D., <span class="big-quote-role" style="color:rgba(255,255,255,0.5)">Chef-propriétaire, Brasserie Lola – Lyon</span></div>
+    </div>
+    <div class="reviews-grid">
+      <div class="review-card"><span class="stars">★★★★★</span><p>Résultat au-delà de mes attentes. L'équipe a saisi l'esprit de mon bistrot dès le premier concept. Je recommande vivement.</p><div class="reviewer">marc_bistro</div><div class="review-date">18 février 2026</div></div>
+      <div class="review-card"><span class="stars">★★★★★</span><p>Très satisfait du résultat. Livraison rapide, révisions prises en compte avec précision. Un vrai partenaire pour notre image de marque.</p><div class="reviewer">gasthaus_nord</div><div class="review-date">18 février 2026</div></div>
+      <div class="review-card"><span class="stars">★★★★★</span><p>Travail exceptionnel. Le concept retenu représente parfaitement l'identité de notre restaurant danois. Un niveau proche des grands studios.</p><div class="reviewer">norreborobistro</div><div class="review-date">18 février 2026</div></div>
+      <div class="review-card"><span class="stars">★★★★★</span><p>Deuxième fois que je fais appel à Logoexpanse. Chaque fois, le résultat dépasse ce que j'imaginais. Un partenaire de confiance.</p><div class="reviewer">lefournil_gourmet</div><div class="review-date">18 février 2026</div></div>
+      <div class="review-card"><span class="stars">★★★★★</span><p>Jay et son équipe ont su parfaitement traduire l'ambiance de notre brasserie en identité visuelle. Révisions rapides et communication impeccable.</p><div class="reviewer">brasserielola_off</div><div class="review-date">18 février 2026</div></div>
+      <div class="review-card"><span class="stars">★★★★★</span><p>Un design épuré et mémorable pour notre carte et enseigne. En 48h on avait tout. Incroyable rapport qualité-prix.</p><div class="reviewer">cafenordique_paris</div><div class="review-date">18 février 2026</div></div>
+    </div>
+    <div style="text-align:center;margin-top:36px"><a href="https://www.instagram.com/Logoexpanse" target="_blank" class="view-all-link">Voir tous nos avis →</a></div>
+    <p style="text-align:center;margin-top:18px;font-size:13px;color:var(--gray)">Noté 4.8/5 avec + de 100 avis 5 étoiles</p>
+  </div>
+</section>
+
+<!-- ══ PRICING ══ -->
+<section class="pricing" id="Pricing">
+  <div class="container">
+    <h2>Un branding de classe mondiale,<br>10x moins cher qu'une agence traditionnelle.</h2>
+    <p class="pricing-sub">Le coût moyen d'un branding professionnel en France est de 5 000 €*. Nos offres démarrent à 100 €.</p>
+    <div class="pricing-grid">
+      <div class="price-card">
+        <div class="price-name">Offre Essentielle</div>
+        <div class="price-amount"><sup>€</sup>132</div>
+        <p class="price-desc">Le package idéal pour lancer l'identité visuelle de votre restaurant.</p>
+        <div class="spots-notice"><span class="spots-dot"></span>Seulement 5 places aujourd'hui</div>
+        <a href="file:///C:/Users/titou/Desktop/Prospection/essentiel.html" class="order-btn dark">Commander maintenant</a>
+        <div class="money-back">✓ Garantie satisfait ou remboursé</div>
+        <ul class="price-features">
+          <li><span class="check">✓</span>1 concept de logo</li>
+          <li><span class="check">✓</span>Fond transparent</li>
+          <li><span class="check">✓</span>Fichier vectoriel / source</li>
+          <li><span class="check">✓</span>Fichier imprimable</li>
+          <li><span class="check">✓</span>2 révisions incluses</li>
+          <li><span class="check">✓</span>Livraison en 2 jours</li>
+          <li><span class="check">✓</span>Palettes de couleurs</li>
+          <li><span class="check">✓</span>Typographie de marque</li>
+          <li class="dimmed">— Mockups 3D</li>
+          <li class="dimmed">— Designs de papeterie</li>
+          <li class="dimmed">— Analyse concurrentielle</li>
+        </ul>
+      </div>
+      <div class="price-card popular">
+        <div class="popular-badge">Le plus populaire</div>
+        <div class="price-name">Branding Premium</div>
+        <div class="price-amount"><sup>€</sup>550</div>
+        <p class="price-desc">Tout ce qu'il vous faut pour lancer et développer votre restaurant avec une image forte.</p>
+        <div class="spots-notice"><span class="spots-dot"></span>Seulement 5 places aujourd'hui</div>
+        <a href="file:///C:/Users/titou/Desktop/Prospection/premium.html" class="order-btn light">Commander maintenant</a>
+        <div class="money-back" style="color:#a8d828">✓ Garantie satisfait ou remboursé</div>
+        <ul class="price-features" style="color:rgba(255,255,255,0.85)">
+          <li><span class="check">✓</span>Tout de l'Essentielle +</li>
+          <li><span class="check">✓</span>3 concepts de logo</li>
+          <li><span class="check">✓</span>Charte graphique complète</li>
+          <li><span class="check">✓</span>Analyse concurrentielle</li>
+          <li><span class="check">✓</span>Palettes de couleurs</li>
+          <li><span class="check">✓</span>Typographie de marque</li>
+          <li><span class="check">✓</span>Kit réseaux sociaux</li>
+          <li><span class="check">✓</span>Mockups 3D</li>
+          <li><span class="check">✓</span>Papeterie (carte de visite)</li>
+          <li><span class="check">✓</span>Styles visuels &amp; iconographie</li>
+          <li><span class="check">✓</span>Guide d'utilisation du logo</li>
+          <li><span class="check">✓</span>Livraison en 2 jours</li>
+          <li><span class="check">✓</span>Révisions illimitées</li>
+        </ul>
+      </div>
+      <div class="price-card">
+        <div class="price-name">L'Écosystème de Marque®</div>
+        <div class="price-amount"><sup>€</sup>1150</div>
+        <p class="price-desc">Le package ultime pour établir et promouvoir votre restaurant en ligne et hors ligne.</p>
+        <div class="spots-notice"><span class="spots-dot"></span>Seulement 5 places aujourd'hui</div>
+        <a href="file:///C:/Users/titou/Desktop/Prospection/Écosystème.html" class="order-btn dark">Commander maintenant</a>
+        <div class="money-back">✓ Garantie satisfait ou remboursé</div>
+        <ul class="price-features">
+          <li><span class="check">✓</span>Tout du Premium +</li>
+          <li><span class="check">✓</span>Stratégie de communication</li>
+          <li><span class="check">✓</span>Vision et valeurs de marque</li>
+          <li><span class="check">✓</span>Ton de voix de marque</li>
+          <li><span class="check">✓</span>10 visuels réseaux sociaux</li>
+          <li><span class="check">✓</span>Design Instagram complet</li>
+          <li><span class="check">✓</span>Design newsletter / e-mailing</li>
+          <li><span class="check">✓</span>5 bannières Google Ads</li>
+          <li><span class="check">✓</span>Design de carte restaurant</li>
+          <li><span class="check">✓</span>Packaging &amp; merchandising</li>
+          <li><span class="check">✓</span>Icônes, patterns, assets UI</li>
+          <li><span class="check">✓</span>Livraison en 5 jours ouvrés</li>
+          <li><span class="check">✓</span>Révisions illimitées</li>
+        </ul>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:40px"><a href="https://www.instagram.com/Logoexpanse" target="_blank" class="btn-secondary">Prendre rendez-vous →</a></div>
+  </div>
+</section>
+
+<!-- ══ GUARANTEE ══ -->
+<section class="guarantee">
+  <div class="guarantee-icon">📝</div>
+  <h2>Garantie satisfait ou remboursé,<br>100% sans risque</h2>
+  <p>Votre satisfaction est notre priorité absolue. Si vous n'êtes pas entièrement satisfait de votre logo, nous continuons à travailler jusqu'à ce que vous l'adoriez — ou nous vous remboursons intégralement.</p>
+  <div class="guarantee-reviews">
+    <div class="guar-review"><span class="stars">★★★★★</span><p>« Quand j'ai découvert Logoexpanse sur Instagram, je me suis dit "voilà une équipe qui comprend comment créer un logo crédible pour un restaurant." Je n'ai plus besoin de chercher ailleurs. »</p><div class="reviewer">Caroline B.</div><div class="review-date">3 décembre 2025</div></div>
+    <div class="guar-review"><span class="stars">★★★★★</span><p>« Comme d'habitude, Jay et son équipe ont su saisir ma vision. Je continuerai à faire appel à eux pour tous mes projets de restauration. »</p><div class="reviewer">pierre_restaurateur</div><div class="review-date">3 décembre 2025</div></div>
+    <div class="guar-review"><span class="stars">★★★★★</span><p>« Jay a un sens incroyable de l'identité de marque pour la restauration. Il a livré bien plus que ce que j'espérais, avec un slogan bonus que nous utilisons maintenant partout. »</p><div class="reviewer">bistro_alsace</div><div class="review-date">3 décembre 2025</div></div>
+  </div>
+</section>
+
+<!-- ══ TEAM ══ -->
+<section class="team">
+  <div class="container">
+    <p class="section-label">Notre équipe</p>
+    <h2>Rencontrez notre équipe de designers</h2>
+    <p class="team-sub">Des centaines de projets réussis grâce à la passion et au dévouement de notre équipe</p>
+    <div class="team-scroll">
+
+      <!-- ⬇ MEDIA [team-maelys]  photo de Maëlys -->
+      <div class="team-member">
+        <div class="member-photo">
+          <div class="member-fallback-emoji">👩‍💼</div>
+          <div class="media-wrap" data-src="https://i.ibb.co/FqdMPsyF/Chat-GPT-Image-22-f-vr-2026-22-23-37.png"></div>
+        </div>
+        <div class="member-info">
+          <div class="member-role">Votre chef de projet</div>
+          <div class="member-name">Maëlys Corvin</div>
+          <div class="member-tag">on l'appelle MAMA ha ha</div>
+        </div>
+      </div>
+
+      <!-- ⬇ MEDIA [team-elior]  photo de Elior -->
+      <div class="team-member">
+        <div class="member-photo">
+          <div class="member-fallback-emoji">1.</div>
+          <div class="media-wrap" data-src="https://i.ibb.co/Y7L4Wt1b/Chat-GPT-Image-22-f-vr-2026-22-35-59.png"></div>
+        </div>
+        <div class="member-info">
+          <div class="member-role">Co-directeur créatif</div>
+          <div class="member-name">Elior</div>
+          <div class="member-tag">Design GOAT</div>
+        </div>
+      </div>
+
+      <!-- ⬇ MEDIA [team-maxime]  photo de Maxime -->
+      <div class="team-member">
+        <div class="member-photo">
+          <div class="member-fallback-emoji">2.</div>
+          <div class="media-wrap" data-src="https://i.ibb.co/yc4RmfCM/Chat-GPT-Image-22-f-vr-2026-22-40-26.png"></div>
+        </div>
+        <div class="member-info">
+          <div class="member-role">Designer de marque</div>
+          <div class="member-name">Maxime</div>
+          <div class="member-tag">also Design GOAT</div>
+        </div>
+      </div>
+
+      <!-- ⬇ MEDIA [team-jay]  photo de Jay -->
+      <div class="team-member">
+        <div class="member-photo">
+          <div class="member-fallback-emoji">3.</div>
+          <div class="media-wrap" data-src="https://i.ibb.co/4g4sSd4f/Image-gratuite-pour-J-Mca-25.png"></div>
+        </div>
+        <div class="member-info">
+          <div class="member-role">CEO &amp; co-directeur créatif</div>
+          <div class="member-name">Jay</div>
+          <div class="member-tag">I'm not allowed to pat myself on the back… today</div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ CASE STUDIES ══ -->
+<section class="case-studies">
+  <div class="container">
+    <h2>Études de cas</h2>
+    <div class="case-studies-grid">
+
+      <!-- ⬇ MEDIA [study-1]  image ou vidéo de couverture -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-study-card">
+        <div class="case-media"><div class="media-wrap" data-src="https://i.pinimg.com/1200x/1f/e7/33/1fe73371e32f07bf5782c9b7e730b642.jpg"><div class="media-fallback"><span>4.</span>Zum Oberförster</div></div></div>
+        <div class="case-content"><h3>Bernhard</h3><p>Restaurant allemand traditionnel. Refonte complète de l'identité pour moderniser l'image tout en conservant l'authenticité de l'établissement.</p></div>
+      </a>
+      <!-- ⬇ MEDIA [study-2] -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-study-card">
+        <div class="case-media"><div class="media-wrap" data-src="https://i.pinimg.com/1200x/6f/36/85/6f3685d43df2243b02dae2ce9945b334.jpg"><div class="media-fallback"><span>5.</span>Bouillon Bouillon</div></div></div>
+        <div class="case-content"><h3>Bouillon Bouillon</h3><p>Brasserie française contemporaine à Lyon. Création d'une identité visuelle élégante et chaleureuse, du logo à la carte.</p></div>
+      </a>
+      <!-- ⬇ MEDIA [study-3] -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-study-card">
+        <div class="case-media"><div class="media-wrap" data-src="https://i.pinimg.com/1200x/28/b3/60/28b3600e269cc14179547ef5d69fc9be.jpg"><div class="media-fallback"><span>6.</span>delish</div></div></div>
+        <div class="case-content"><h3>Delish</h3><p>Bistrot danois à Copenhague. Identité minimaliste et nordique pour un restaurant au positionnement premium.</p></div>
+      </a>
+      <!-- ⬇ MEDIA [study-4] -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-study-card">
+        <div class="case-media"><div class="media-wrap" data-src="https://i.pinimg.com/736x/2e/2a/be/2e2abed4a69938a342335ddb7c3057ae.jpg"><div class="media-fallback"><span>7.</span>Bite</div></div></div>
+        <div class="case-content"><h3>Bite</h3><p>Restaurant gastronomique français. Brand ecosystem complet — logo, charte, carte, et présence digitale.</p></div>
+      </a>
+      <!-- ⬇ MEDIA [study-5] -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-study-card">
+        <div class="case-media"><div class="media-wrap" data-src="https://i.pinimg.com/736x/b2/04/f0/b204f02f9142f279d518ab42d9d6e962.jpg"><div class="media-fallback"><span>8.</span>Omonia</div></div></div>
+        <div class="case-content"><h3>Omonia</h3><p>Établissement bavarois en Alsace. Fusion d'influences franco-allemandes dans une identité forte et mémorable.</p></div>
+      </a>
+      <!-- ⬇ MEDIA [study-6] -->
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank" class="case-study-card">
+        <div class="case-media"><div class="media-wrap" data-src="https://i.pinimg.com/1200x/bc/2c/92/bc2c92c318e480d0265ec46ee3cbd822.jpg"><div class="media-fallback"><span>9.</span>Palato</div></div></div>
+        <div class="case-content"><h3>Palato</h3><p>Concept de café danois à Paris. Identité douce et organique qui incarne la philosophie "hygge" au cœur de la capitale.</p></div>
+      </a>
+
+    </div>
+  </div>
+</section>
+
+<!-- ══ BONUS ══ -->
+<section class="bonus">
+  <div class="bonus-inner">
+    <div>
+      <div class="bonus-badge">Bonus exclusif avec le Pack Premium uniquement</div>
+      <h2>La Formule Succès Restaurant</h2>
+      <p>Vous avez construit quelque chose d'exceptionnel — votre image de marque doit le refléter.</p>
+      <ul class="bonus-list">
+        <li><span class="check">✓</span>Comment attirer de nouveaux clients en ligne en 2025</li>
+        <li><span class="check">✓</span>Comment générer du trafic et convertir les visiteurs en réservations</li>
+        <li><span class="check">✓</span>Comment vous démarquer de la concurrence et capter leur clientèle</li>
+        <li><span class="check">✓</span>Les étapes exactes pour passer de 0 à un flux continu de couverts</li>
+      </ul>
+    </div>
+    <!-- ⬇ MEDIA [bonus-cover]  couverture du guide (image ou vidéo) -->
+    <div class="bonus-media">
+      <div class="media-wrap" data-src="https://i.ibb.co/5xtC6c0S/Vivid-Core-11.png"><div class="media-fallback dark"><span>📘</span>Guide</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FAQ ══ -->
+<section class="faq" id="FAQ">
+  <div class="container">
+    <h2>Questions fréquentes</h2>
+    <div class="faq-list">
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Pour qui est ce service ?<span class="faq-icon">+</span></button><div class="faq-answer">Nous accompagnons les restaurateurs, cafés, brasseries et tout établissement de restauration qui souhaite un logo et une identité visuelle professionnels — sans attendre des semaines ni payer des prix d'agence.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Qui va designer mon logo ?<span class="faq-icon">+</span></button><div class="faq-answer">Votre logo est conçu par un designer professionnel de Logoexpanse, soigneusement sélectionné pour son expertise. Maëlys, notre chef de projet, supervise l'ensemble du processus pour garantir cohérence et qualité.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Utilisez-vous l'IA pour concevoir les logos ?<span class="faq-icon">+</span></button><div class="faq-answer">Non. Tous nos logos sont 100% créés par des humains. Chaque concept est imaginé, affiné et finalisé avec de la vraie créativité, une vraie stratégie et un vrai savoir-faire.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Faites-vous appel à des freelances ?<span class="faq-icon">+</span></button><div class="faq-answer">Non. Tous nos designers sont des professionnels à temps plein. Nos prix sont compétitifs parce que notre organisation est efficace — pas parce que nous faisons des compromis sur la qualité.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Serai-je propriétaire de mon logo ?<span class="faq-icon">+</span></button><div class="faq-answer">Oui ! Vous recevez la pleine propriété et des droits d'utilisation illimités — impression, digital, merchandising, signalétique. Votre logo peut être entièrement protégé et déposé.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">En combien de temps livrez-vous ?<span class="faq-icon">+</span></button><div class="faq-answer">Nous livrons votre logo en seulement 48 heures. Pour le pack L'Écosystème de Marque, comptez 5 jours ouvrés en raison du volume de livrables inclus.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Comment pouvez-vous livrer si vite ?<span class="faq-icon">+</span></button><div class="faq-answer">Avec plus de 20 ans d'expérience cumulés dans le design, notre équipe utilise des processus optimisés et une collaboration étroite. Nous éliminons les réunions inutiles pour nous concentrer sur l'essentiel.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Et si mon logo ne me plaît pas ?<span class="faq-icon">+</span></button><div class="faq-answer">Nous proposons des révisions illimitées jusqu'à ce que vous soyez pleinement satisfait. Dans le cas rare où nous ne réussirions pas, nous vous remboursons intégralement. Consultez notre <a href="refund.html">politique de remboursement</a> pour les détails.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">Puis-je payer en plusieurs fois ?<span class="faq-icon">+</span></button><div class="faq-answer">Tous nos services sont réglés en totalité avant le début du projet. Cela nous permet d'affecter la bonne équipe et d'assurer une livraison efficace sans interruption.</div></div>
+      <div class="faq-item"><button class="faq-question" onclick="toggleFaq(this)">L'histoire de Logoexpanse — qui êtes-vous ?<span class="faq-icon">+</span></button><div class="faq-answer">Logoexpanse a été fondé par Jay, designer américano-français spécialisé dans les logos iconiques pour les restaurants. Fondée en 2021 comme projet parallèle, Logoexpanse est passé d'un seul designer à une équipe de plus de 50 professionnels répartis dans le monde entier. Notre mission : donner à chaque restaurateur une marque aussi crédible que les établissements les plus renommés.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══ -->
+<footer>
+  <div class="footer-grid">
+    <div>
+      <a href="#" class="footer-logo">Logoexpanse</a>
+      <p class="footer-desc">Branding professionnel pour restaurants, livré en 48h. Zéro IA, une freelance, et du talent humain au service de votre image.</p>
+      <div class="footer-contact">
+        <a href="mailto:Logoexpanse@gmail.com">📧 Logoexpanse@gmail.com</a>
+        <a href="https://www.instagram.com/Logoexpanse" target="_blank">📸 @Logoexpanse</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Explorer</h4>
+      <ul>
+        <li><a href="#Portfolio">Portfolio</a></li>
+        <li><a href="#How-it-works">Comment ça marche</a></li>
+        <li><a href="#Case-Study">Études de cas</a></li>
+        <li><a href="#FAQ">FAQ</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Légal</h4>
+      <ul>
+        <!-- ══ LIENS PAGES LÉGALES — reliés aux fichiers terms.html et refund.html ══ -->
+        <li><a href="terms.html">Conditions d'utilisation</a></li>
+        <li><a href="refund.html">Politique de remboursement</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© Logoexpanse 2025. Tous droits réservés.</span>
+    <div class="footer-social">
+      <span style="color:rgba(255,255,255,0.3)">France &amp; Europe</span>
+      <a href="https://www.instagram.com/Logoexpanse" target="_blank">@Logoexpanse</a>
+      <a href="mailto:Logoexpanse@gmail.com">Logoexpanse@gmail.com</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ═══════════════════════════════════════════════════════════════
+  MOTEUR MÉDIA — Injection automatique image / vidéo
+  ─────────────────────────────────────────────────────────────
+  Parcourt tous les éléments ayant un attribut data-src.
+  • URL terminant par .mp4 .webm .ogg .mov → <video>
+  • Tout autre URL → <img>
+  • data-src vide → le fallback (émoji) reste visible
+═══════════════════════════════════════════════════════════════ -->
+<script>
+(function() {
+  const VIDEO = /\.(mp4|webm|ogg|mov|m4v)(\?.*)?$/i;
+
+  /* ── .media-wrap [data-src] ── */
+  document.querySelectorAll('.media-wrap[data-src]').forEach(function(wrap) {
+    var src = (wrap.getAttribute('data-src') || '').trim();
+    if (!src) return;
+    var fallback = wrap.querySelector('.media-fallback');
+    var el;
+    if (VIDEO.test(src)) {
+      el = document.createElement('video');
+      el.autoplay = el.loop = el.muted = el.playsInline = true;
+    } else {
+      el = document.createElement('img');
+      el.alt = '';
+      el.loading = 'lazy';
+    }
+    el.src = src;
+    el.style.cssText = 'width:100%;height:100%;object-fit:cover;display:block;position:relative;z-index:1;';
+    el.addEventListener('load',      function(){ if(fallback) fallback.style.display='none'; });
+    el.addEventListener('loadeddata',function(){ if(fallback) fallback.style.display='none'; });
+    el.addEventListener('error',     function(){ /* fallback stays */ });
+    wrap.insertBefore(el, fallback);
+  });
+
+  /* ── .feat-media [data-src] (feature card icons) ── */
+  document.querySelectorAll('.feat-media[data-src]').forEach(function(box) {
+    var src = (box.getAttribute('data-src') || '').trim();
+    if (!src) return;
+    var emoji = box.textContent.trim();
+    box.textContent = '';
+    var el;
+    if (VIDEO.test(src)) {
+      el = document.createElement('video');
+      el.autoplay = el.loop = el.muted = el.playsInline = true;
+    } else {
+      el = document.createElement('img');
+      el.alt = '';
+    }
+    el.src = src;
+    el.style.cssText = 'width:100%;height:100%;object-fit:cover;border-radius:14px;display:block;';
+    el.addEventListener('error', function(){ box.textContent = emoji; });
+    box.appendChild(el);
+  });
+})();
+
+/* ── FAQ ── */
+function toggleFaq(btn) {
+  var item = btn.parentElement;
+  var isOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(function(i){ i.classList.remove('open'); });
+  if (!isOpen) item.classList.add('open');
+}
+
+/* ── Filtre portfolio ── */
+function filterPortfolio(btn, cat) {
+  document.querySelectorAll('.tab-btn').forEach(function(b){ b.classList.remove('active'); });
+  btn.classList.add('active');
+  document.querySelectorAll('#portfolioGrid .portfolio-item').forEach(function(item) {
+    item.style.display = (cat === 'all' || item.dataset.cat === cat) ? '' : 'none';
+  });
+}
+</script>
+</body>
+</html>

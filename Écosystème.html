@@ -1,0 +1,639 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Checkout — Logoexpanse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a;
+    --white: #ffffff;
+    --off-white: #f5f4f0;
+    --cream: #faf9f6;
+    --accent: #c8fb4a;
+    --accent-dark: #a8d828;
+    --gray: #6b6b6b;
+    --light-gray: #e8e6e1;
+    --border: #e0ddd6;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background: var(--cream); color: var(--black); overflow-x: hidden; line-height: 1.6; min-height: 100vh; }
+
+  /* ══ FLASH BANNER ══ */
+  .flash-banner {
+    background: var(--black); color: var(--white); text-align: center;
+    padding: 10px 20px; font-size: 13px; font-weight: 500; letter-spacing: 0.02em;
+    display: flex; align-items: center; justify-content: center; gap: 12px; flex-wrap: wrap;
+  }
+  .flash-banner .code-pill {
+    background: var(--accent); color: var(--black); padding: 3px 12px;
+    border-radius: 20px; font-weight: 700; font-size: 12px; cursor: pointer; transition: opacity 0.2s;
+  }
+  .flash-banner .code-pill:hover { opacity: 0.8; }
+
+  /* ══ NAVBAR ══ */
+  nav.main-nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px;
+  }
+  .nav-logo { font-family: var(--font-serif); font-size: 22px; font-weight: 400; letter-spacing: -0.02em; color: var(--black); text-decoration: none; }
+  .nav-back { display: inline-flex; align-items: center; gap: 8px; color: var(--gray); text-decoration: none; font-size: 14px; font-weight: 500; transition: color 0.2s; border: 1px solid var(--border); padding: 8px 16px; border-radius: 100px; }
+  .nav-back:hover { color: var(--black); border-color: var(--black); }
+  .nav-back svg { transition: transform 0.2s; }
+  .nav-back:hover svg { transform: translateX(-3px); }
+  .nav-secure { display: flex; align-items: center; gap: 6px; font-size: 13px; color: var(--gray); font-weight: 500; }
+  .secure-dot { width: 8px; height: 8px; background: #22c55e; border-radius: 50%; }
+
+  /* ══ MAIN LAYOUT ══ */
+  .checkout-wrap { max-width: 1120px; margin: 0 auto; padding: 60px 40px 80px; display: grid; grid-template-columns: 1fr 420px; gap: 40px; align-items: start; }
+
+  @media(max-width: 900px) {
+    .checkout-wrap { grid-template-columns: 1fr; padding: 40px 20px 60px; }
+    .summary-col { order: -1; }
+    nav.main-nav { padding: 0 20px; }
+  }
+
+  /* ══ SECTION LABEL ══ */
+  .section-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: var(--gray); margin-bottom: 12px; font-weight: 500; }
+
+  /* ══ LEFT COLUMN ══ */
+  .form-col { display: flex; flex-direction: column; gap: 24px; }
+
+  /* Panel */
+  .panel {
+    background: var(--white); border: 1px solid var(--border); border-radius: 20px; padding: 32px;
+    animation: fadeUp 0.5s ease both;
+  }
+  .panel:nth-child(2) { animation-delay: 0.1s; }
+  .panel:nth-child(3) { animation-delay: 0.2s; }
+
+  .panel-heading {
+    font-family: var(--font-serif); font-size: 24px; letter-spacing: -0.02em;
+    margin-bottom: 24px; color: var(--black);
+  }
+
+  /* Method selector */
+  .methods { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 28px; }
+  .method-btn {
+    border: 1.5px solid var(--border); border-radius: 12px; padding: 13px 16px;
+    background: var(--white); cursor: pointer; display: flex; align-items: center; justify-content: center;
+    gap: 10px; font-size: 14px; font-weight: 600; color: var(--gray); transition: all 0.2s;
+    font-family: var(--font-sans);
+  }
+  .method-btn:hover { border-color: var(--black); color: var(--black); background: var(--off-white); }
+  .method-btn.active { border-color: var(--black); background: var(--black); color: var(--white); }
+
+  /* Form */
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+  .form-group { margin-bottom: 16px; }
+  .form-label { display: block; font-size: 12px; font-weight: 700; color: var(--black); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 8px; }
+  .form-input {
+    width: 100%; border: 1.5px solid var(--border); border-radius: 10px;
+    padding: 13px 16px; font-family: var(--font-sans); font-size: 15px; color: var(--black);
+    background: var(--white); outline: none; transition: border-color 0.2s;
+  }
+  .form-input::placeholder { color: #bbb; }
+  .form-input:focus { border-color: var(--black); }
+
+  .card-field { position: relative; }
+  .card-brands { position: absolute; right: 14px; top: 50%; transform: translateY(-50%); display: flex; gap: 4px; }
+  .card-brands .brand { width: 30px; height: 20px; border-radius: 4px; overflow: hidden; display: flex; align-items: center; justify-content: center; font-size: 9px; font-weight: 800; }
+  .brand-visa { background: #1a1f71; color: #fff; letter-spacing: 0.5px; }
+  .brand-mc { background: #f79e1b; color: #fff; }
+
+  /* Pay button */
+  .pay-btn {
+    width: 100%; padding: 16px; background: var(--black); color: var(--white);
+    border: none; border-radius: 100px; font-family: var(--font-sans); font-size: 16px;
+    font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    gap: 10px; text-decoration: none; transition: background 0.2s, transform 0.15s;
+    margin-top: 8px;
+  }
+  .pay-btn:hover { background: #222; transform: translateY(-2px); }
+  .pay-btn:active { transform: translateY(0); }
+
+  .pay-footer { display: flex; align-items: center; justify-content: center; gap: 6px; margin-top: 14px; font-size: 12px; color: var(--gray); }
+  .pay-footer a { color: var(--black); font-weight: 600; }
+
+  /* PayPal */
+  #paypal-block { display: none; }
+  .paypal-cta {
+    width: 100%; padding: 16px; background: #FFC439; color: #003087;
+    border: none; border-radius: 100px; font-family: var(--font-sans); font-size: 16px;
+    font-weight: 800; cursor: pointer; display: flex; align-items: center; justify-content: center;
+    gap: 8px; text-decoration: none; transition: filter 0.2s;
+  }
+  .paypal-cta:hover { filter: brightness(1.06); }
+
+  /* ══ ORDER SUMMARY ══ */
+  .summary-col { animation: fadeUp 0.5s 0.15s ease both; }
+  .summary-sticky { position: sticky; top: 80px; }
+
+  .summary-panel {
+    background: var(--black); color: var(--white); border-radius: 20px; padding: 32px;
+  }
+
+  .summary-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); margin-bottom: 20px; font-weight: 500; }
+
+  .pkg-name { font-family: var(--font-serif); font-size: 28px; color: var(--white); margin-bottom: 6px; letter-spacing: -0.02em; }
+  .pkg-tagline { font-size: 14px; color: rgba(255,255,255,0.45); margin-bottom: 24px; }
+
+  .pkg-features { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-bottom: 28px; padding-bottom: 24px; border-bottom: 1px solid rgba(255,255,255,0.1); }
+  .pkg-features li { display: flex; align-items: center; gap: 10px; font-size: 14px; color: rgba(255,255,255,0.8); font-weight: 500; }
+  .check-yes { width: 20px; height: 20px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; flex-shrink: 0; }
+  .check-yes svg { display: block; }
+
+  /* Addons */
+  .addons-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.15em; color: rgba(255,255,255,0.35); margin-bottom: 14px; font-weight: 500; }
+
+  .addon {
+    border: 1.5px solid rgba(255,255,255,0.1); border-radius: 14px; padding: 14px 16px;
+    cursor: pointer; transition: border-color 0.2s, background 0.2s; margin-bottom: 10px;
+  }
+  .addon:hover { border-color: rgba(255,255,255,0.25); }
+  .addon.active { border-color: var(--accent); background: rgba(200,251,74,0.06); }
+
+  .addon-row { display: flex; align-items: flex-start; gap: 12px; }
+  .addon-box {
+    width: 20px; height: 20px; border-radius: 5px; border: 1.5px solid rgba(255,255,255,0.2);
+    flex-shrink: 0; margin-top: 1px; display: flex; align-items: center; justify-content: center;
+    transition: all 0.2s; background: transparent;
+  }
+  .addon.active .addon-box { border-color: var(--accent); background: var(--accent); }
+  .addon.active .addon-box svg { opacity: 1; }
+  .addon-box svg { opacity: 0; transition: opacity 0.15s; }
+
+  .addon-info { flex: 1; }
+  .addon-name { font-size: 14px; font-weight: 600; color: var(--white); margin-bottom: 2px; }
+  .addon-desc { font-size: 12px; color: rgba(255,255,255,0.4); line-height: 1.5; }
+  .addon-prices { text-align: right; flex-shrink: 0; }
+  .addon-orig { font-size: 12px; color: rgba(255,255,255,0.3); text-decoration: line-through; }
+  .addon-sale { font-size: 16px; font-weight: 700; color: var(--accent); }
+
+  /* Totals */
+  .totals-block { border-top: 1px solid rgba(255,255,255,0.1); margin-top: 20px; padding-top: 20px; }
+  .total-line { display: flex; justify-content: space-between; font-size: 14px; color: rgba(255,255,255,0.5); margin-bottom: 8px; }
+  .total-addon-line { display: flex; justify-content: space-between; font-size: 13px; color: var(--accent); margin-bottom: 6px; }
+  .total-final-line { display: flex; justify-content: space-between; align-items: baseline; margin-top: 16px; padding-top: 16px; border-top: 1px solid rgba(255,255,255,0.1); }
+  .total-final-label { font-family: var(--font-serif); font-size: 18px; color: var(--white); }
+  .total-final-amount { font-family: var(--font-serif); font-size: 42px; color: var(--white); line-height: 1; }
+  .total-final-amount sup { font-size: 20px; vertical-align: super; }
+
+  /* Guarantee */
+  .guarantee-strip {
+    background: rgba(200,251,74,0.08); border: 1px solid rgba(200,251,74,0.2);
+    border-radius: 12px; padding: 14px 16px; margin-top: 16px;
+    display: flex; align-items: center; gap: 10px; font-size: 13px; color: var(--accent); font-weight: 600;
+  }
+  .guarantee-strip span:first-child { font-size: 20px; flex-shrink: 0; }
+
+  /* Trust badges */
+  .trust-row { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-top: 12px; }
+  .trust-badge {
+    background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 10px; padding: 10px 12px; font-size: 12px; color: rgba(255,255,255,0.45);
+    display: flex; align-items: center; gap: 6px; font-weight: 500;
+  }
+  .trust-badge span:first-child { font-size: 14px; }
+
+  /* ══ ANIMATIONS ══ */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(20px)} to{opacity:1;transform:translateY(0)} }
+
+  /* ══ SUCCESS OVERLAY ══ */
+  .success-overlay {
+    display: none; position: fixed; inset: 0;
+    background: rgba(10,10,10,0.7); backdrop-filter: blur(8px);
+    z-index: 200; align-items: center; justify-content: center;
+  }
+  .success-overlay.show { display: flex; }
+  .success-card {
+    background: var(--white); border-radius: 24px; padding: 52px 44px;
+    text-align: center; max-width: 420px; width: 90%; animation: fadeUp 0.35s ease;
+  }
+  .success-icon { font-size: 52px; margin-bottom: 20px; }
+  .success-title { font-family: var(--font-serif); font-size: 32px; margin-bottom: 12px; letter-spacing: -0.02em; }
+  .success-msg { font-size: 15px; color: var(--gray); line-height: 1.7; margin-bottom: 28px; }
+  .success-btn { display: inline-flex; align-items: center; gap: 8px; background: var(--black); color: var(--white); padding: 14px 28px; border-radius: 100px; text-decoration: none; font-weight: 700; font-size: 15px; transition: background 0.2s; }
+  .success-btn:hover { background: #222; }
+</style>
+</head>
+<body>
+
+<!-- ══ FLASH BANNER ══ -->
+<div class="flash-banner">
+  <span>⏱</span>
+  <strong>Offre de lancement !</strong>
+  <span>20% de réduction sur tout</span>
+  <span>Code :</span>
+  <span class="code-pill" onclick="navigator.clipboard.writeText('LAUNCH20').then(()=>{this.textContent='Copié !';setTimeout(()=>this.textContent='LAUNCH20',1500)})">LAUNCH20</span>
+</div>
+
+<!-- ══ NAVBAR ══ -->
+<nav class="main-nav">
+  <a href="file:///C:/Users/titou/Desktop/Prospection/index.html" class="nav-back">
+    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+    Retour
+  </a>
+  <a href="#" class="nav-logo">Logoexpanse</a>
+  <div class="nav-secure">
+    <span class="secure-dot"></span>
+    Paiement sécurisé
+  </div>
+</nav>
+
+<!-- ══ MAIN ══ -->
+<div class="checkout-wrap">
+
+  <!-- LEFT: FORM -->
+  <div class="form-col">
+
+    <!-- Panel 1: Method -->
+    <div class="panel">
+      <p class="section-label">Étape 1 — Méthode de paiement</p>
+      <h2 class="panel-heading">Comment souhaitez-vous payer ?</h2>
+
+      <div class="methods">
+        <button class="method-btn active" id="btn-card" onclick="setMethod('card')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          Carte bancaire
+        </button>
+        <button class="method-btn" id="btn-paypal" onclick="setMethod('paypal')">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="#003087"><text y="17" font-size="17" font-weight="900" font-family="Arial">P</text></svg>
+          PayPal
+        </button>
+      </div>
+
+      <!-- Card block -->
+      <div id="card-block">
+        <div class="form-group">
+          <label class="form-label">Nom complet</label>
+          <input class="form-input" type="text" placeholder="Jean Dupont" id="inp-name">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Adresse email</label>
+          <input class="form-input" type="email" placeholder="jean@restaurant.com" id="inp-email">
+        </div>
+        <div class="form-group">
+          <label class="form-label">Numéro de carte</label>
+          <div class="card-field">
+            <input class="form-input" type="text" placeholder="1234  5678  9012  3456" id="inp-card" maxlength="19" oninput="formatCard(this)" style="padding-right:84px">
+            <div class="card-brands">
+              <div class="brand brand-visa">VISA</div>
+              <div class="brand brand-mc">MC</div>
+            </div>
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">Expiration</label>
+            <input class="form-input" type="text" placeholder="MM / AA" id="inp-exp" maxlength="7" oninput="formatExp(this)">
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label class="form-label">CVC</label>
+            <input class="form-input" type="text" placeholder="•••" maxlength="3" oninput="this.value=this.value.replace(/\D/g,'')">
+          </div>
+        </div>
+      </div>
+
+      <!-- PayPal block -->
+      <div id="paypal-block">
+        <p style="font-size:14px;color:var(--gray);margin-bottom:20px;line-height:1.65">Vous serez redirigé vers PayPal pour finaliser votre paiement en toute sécurité. Aucune information bancaire n'est stockée sur notre site.</p>
+        <!--
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+          💡 PAYPAL — Remplacez l'URL ci-dessous
+          par votre lien paypal.me ou bouton PayPal
+          ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        -->
+        <a href="https://www.paypal.com/ncp/payment/7V83YYVVVXRUS" class="paypal-cta" target="_blank">
+          <svg width="22" height="22" viewBox="0 0 24 24"><text y="18" font-size="20" font-weight="900" font-family="Arial" fill="#003087">P</text></svg>
+          Continuer avec PayPal
+        </a>
+      </div>
+    </div>
+
+    <!-- Panel 2: Brief client -->
+    <div class="panel">
+      <p class="section-label">Étape 2 — Votre restaurant</p>
+      <h2 class="panel-heading">Parlez-nous de vous</h2>
+      <p style="font-size:14px;color:var(--gray);margin-bottom:24px;line-height:1.65">Ces informations permettent à notre équipe de créer un branding parfaitement adapté à votre établissement.</p>
+
+      <div class="form-group">
+        <label class="form-label">Votre prénom & nom</label>
+        <input class="form-input" type="text" placeholder="Jean Dupont" id="brief-name">
+      </div>
+      <div class="form-row">
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Nom du restaurant</label>
+          <input class="form-input" type="text" placeholder="Brasserie Lola" id="brief-resto">
+        </div>
+        <div class="form-group" style="margin-bottom:0">
+          <label class="form-label">Ville / Pays</label>
+          <input class="form-input" type="text" placeholder="Paris, France" id="brief-location">
+        </div>
+      </div>
+      <div class="form-group" style="margin-top:16px">
+        <label class="form-label">Décrivez votre restaurant</label>
+        <textarea class="form-input" id="brief-desc" rows="5" placeholder="Parlez-nous de l'ambiance, du style de cuisine, de vos valeurs, de votre clientèle cible, de ce qui vous rend unique… Plus vous nous en dites, plus notre design sera juste." style="resize:vertical;line-height:1.65"></textarea>
+        <p style="font-size:12px;color:#bbb;margin-top:6px">Pas de limite — écrivez autant que vous le souhaitez.</p>
+      </div>
+    </div>
+
+    <!-- Panel 3: Pay -->
+    <div class="panel">
+      <p class="section-label">Étape 3 — Confirmer</p>
+      <h2 class="panel-heading">Total : <span id="btn-total">€1150</span></h2>
+      <p style="font-size:14px;color:var(--gray);margin-bottom:24px;line-height:1.65">En cliquant sur "Payer maintenant", vous confirmez votre commande et acceptez nos <a href="terms.html" style="color:var(--black);font-weight:600">conditions d'utilisation</a>.</p>
+
+      <!-- Promo code -->
+      <div style="margin-bottom:20px">
+        <label class="form-label">Code promo</label>
+        <div style="display:flex;gap:10px">
+          <input class="form-input" type="text" placeholder="ex: LAUNCH20" id="promo-input" style="flex:1;text-transform:uppercase" oninput="this.value=this.value.toUpperCase()">
+          <button id="promo-btn" onclick="applyPromo()" style="background:var(--black);color:var(--white);border:none;border-radius:10px;padding:0 20px;font-family:var(--font-sans);font-size:14px;font-weight:700;cursor:pointer;white-space:nowrap;transition:background 0.2s" onmouseover="this.style.background='#333'" onmouseout="this.style.background=promoApplied?'#22c55e':'var(--black)'">Appliquer</button>
+        </div>
+        <div id="promo-msg" style="margin-top:8px;font-size:13px;font-weight:600;display:none"></div>
+      </div>
+
+      <!--
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+        💳 STRIPE — Remplacez l'URL par votre lien
+        Stripe Payment Link (dashboard.stripe.com)
+        ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+      -->
+      <a href="https://buy.stripe.com/test_8x2eVd3cK7720AbbSkbwk00" id="main-pay-btn" class="pay-btn" onclick="handlePay(event)">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Payer maintenant
+        <span style="opacity:0.5">→</span>
+      </a>
+
+      <div class="pay-footer">
+        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+        Paiement sécurisé par Stripe — SSL chiffré
+      </div>
+    </div>
+
+  </div>
+
+  <!-- RIGHT: SUMMARY -->
+  <div class="summary-col">
+    <div class="summary-sticky">
+      <div class="summary-panel">
+        <p class="summary-label">Récapitulatif de commande</p>
+
+        <h2 class="pkg-name">Branding Écosystème</h2>
+        <p class="pkg-tagline">Livraison en 48h · Satisfait ou remboursé</p>
+
+        <ul class="pkg-features">
+          <li>
+            <div class="check-yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            10 visuels réseaux sociaux
+          </li>
+          <li>
+            <div class="check-yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            5 bannières Google Ads
+          </li>
+          <li>
+            <div class="check-yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Livraison en 5 jours ouvrés
+          </li>
+          <li>
+            <div class="check-yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Design newsletter / e-mailing
+          </li>
+          <li>
+            <div class="check-yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Design de carte restaurant
+          </li>
+          <li>
+            <div class="check-yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Stratégie de communication
+          </li>
+          <li>
+            <div class="check-yes"><svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg></div>
+            Packaging & merchandising
+          </li>
+        </ul>
+
+        <!-- Add-ons -->
+        <p class="addons-label">Améliorations optionnelles</p>
+
+        <div class="addon" id="addon-anim" onclick="toggleAddon('anim',90)">
+          <div class="addon-row">
+            <div class="addon-box">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="addon-info">
+              <div class="addon-name">Animation logo</div>
+              <div class="addon-desc">Pour réseaux sociaux, YouTube & publicités.</div>
+            </div>
+            <div class="addon-prices">
+              <div class="addon-orig">€149</div>
+              <div class="addon-sale">€90</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="addon" id="addon-fast" onclick="toggleAddon('fast',140)">
+          <div class="addon-row">
+            <div class="addon-box">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="addon-info">
+              <div class="addon-name">Livraison ultra-rapide (24h)</div>
+              <div class="addon-desc">Delivery VIP express.</div>
+            </div>
+            <div class="addon-prices">
+              <div class="addon-sale">€140</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="addon" id="addon-concept" onclick="toggleAddon('concept',180)">
+          <div class="addon-row">
+            <div class="addon-box">
+              <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="#0a0a0a" stroke-width="3.5"><polyline points="20 6 9 17 4 12"/></svg>
+            </div>
+            <div class="addon-info">
+              <div class="addon-name">Concept supplémentaire</div>
+              <div class="addon-desc">Une direction créative additionnelle.</div>
+            </div>
+            <div class="addon-prices">
+              <div class="addon-orig">€240</div>
+              <div class="addon-sale">€180</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Totals -->
+        <div class="totals-block">
+          <div class="total-line"><span>Package Écosystème</span><span>€1150</span></div>
+          <div id="addon-lines"></div>
+          <div class="total-final-line">
+            <span class="total-final-label">Total</span>
+            <span class="total-final-amount"><sup>€</sup><span id="total-num">1150</span></span>
+          </div>
+        </div>
+
+        <!-- Guarantee -->
+        <div class="guarantee-strip">
+          <span>🛡️</span>
+          <span>Satisfait ou 100% remboursé — sans condition</span>
+        </div>
+
+        <!-- Trust -->
+        <div class="trust-row">
+          <div class="trust-badge"><span>🌍</span>Enregistré USA</div>
+          <div class="trust-badge"><span>🔒</span>SSL chiffré</div>
+          <div class="trust-badge"><span>⭐</span>Top 1% mondial</div>
+          <div class="trust-badge"><span>👥</span>+300 clients</div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- Success overlay -->
+<div class="success-overlay" id="success-overlay" onclick="this.classList.remove('show')">
+  <div class="success-card" onclick="event.stopPropagation()">
+    <div class="success-icon">🎉</div>
+    <h2 class="success-title">Commande confirmée !</h2>
+    <p class="success-msg">Merci pour votre commande. Notre équipe commencera à travailler sur votre branding immédiatement. Vous recevrez un email de confirmation sous peu.</p>
+    <a href="file:///C:/Users/titou/Desktop/Prospection/index.html" class="success-btn">Retour à l'accueil →</a>
+  </div>
+</div>
+
+<script>
+  const BASE = 1150;
+  let addons = {};
+  let promoApplied = false;
+
+  function toggleAddon(key, price) {
+    const el = document.getElementById('addon-' + key);
+    if (addons[key]) { delete addons[key]; el.classList.remove('active'); }
+    else { addons[key] = price; el.classList.add('active'); }
+    updateTotal();
+  }
+
+  function updateTotal() {
+    const subtotal = BASE + Object.values(addons).reduce((a, b) => a + b, 0);
+    const discount = promoApplied ? Math.round(subtotal * 0.20) : 0;
+    const total = subtotal - discount;
+
+    document.getElementById('total-num').textContent = total;
+    document.getElementById('btn-total').textContent = '€' + total;
+
+    const names = { anim: 'Animation logo', fast: 'Livraison 24h', concept: 'Concept supp.' };
+    let lines = Object.entries(addons)
+      .map(([k, v]) => `<div class="total-addon-line"><span>+ ${names[k]}</span><span>+€${v}</span></div>`)
+      .join('');
+    if (promoApplied) {
+      lines += `<div class="total-addon-line" style="color:#22c55e"><span>🏷️ Code LAUNCH20 (−20%)</span><span>−€${discount}</span></div>`;
+    }
+    document.getElementById('addon-lines').innerHTML = lines;
+  }
+
+  function applyPromo() {
+    const code = document.getElementById('promo-input').value.trim().toUpperCase();
+    const msg = document.getElementById('promo-msg');
+    const btn = document.getElementById('promo-btn');
+
+    if (promoApplied) {
+      // Remove promo
+      promoApplied = false;
+      btn.textContent = 'Appliquer';
+      btn.style.background = 'var(--black)';
+      document.getElementById('promo-input').value = '';
+      document.getElementById('promo-input').disabled = false;
+      msg.style.display = 'none';
+      updateTotal();
+      return;
+    }
+
+    if (code === 'LAUNCH20') {
+      promoApplied = true;
+      msg.textContent = '✓ Code LAUNCH20 appliqué — 20% de réduction !';
+      msg.style.color = '#22c55e';
+      msg.style.display = 'block';
+      btn.textContent = 'Retirer';
+      btn.style.background = '#22c55e';
+      btn.style.color = '#0a0a0a';
+      btn.onmouseover = () => btn.style.background = '#1aad52';
+      btn.onmouseout  = () => btn.style.background = '#22c55e';
+      document.getElementById('promo-input').disabled = true;
+    } else if (code === '') {
+      msg.textContent = '⚠️ Veuillez entrer un code promo.';
+      msg.style.color = '#e74c3c';
+      msg.style.display = 'block';
+    } else {
+      msg.textContent = '✕ Code invalide. Essayez LAUNCH20 !';
+      msg.style.color = '#e74c3c';
+      msg.style.display = 'block';
+      document.getElementById('promo-input').style.borderColor = '#e74c3c';
+      setTimeout(() => {
+        document.getElementById('promo-input').style.borderColor = '';
+        msg.style.display = 'none';
+      }, 2500);
+    }
+    updateTotal();
+  }
+
+  // Allow Enter key on promo input
+  document.addEventListener('DOMContentLoaded', () => {
+    document.getElementById('promo-input').addEventListener('keydown', e => {
+      if (e.key === 'Enter') applyPromo();
+    });
+  });
+
+  function setMethod(m) {
+    document.getElementById('btn-card').classList.toggle('active', m === 'card');
+    document.getElementById('btn-paypal').classList.toggle('active', m === 'paypal');
+    document.getElementById('card-block').style.display = m === 'card' ? 'block' : 'none';
+    document.getElementById('paypal-block').style.display = m === 'paypal' ? 'block' : 'none';
+  }
+
+  function formatCard(el) {
+    let v = el.value.replace(/\D/g, '').substring(0, 16);
+    el.value = v.replace(/(.{4})/g, '$1 ').trim();
+  }
+
+  function formatExp(el) {
+    let v = el.value.replace(/\D/g, '').substring(0, 4);
+    if (v.length >= 2) v = v.substring(0, 2) + ' / ' + v.substring(2);
+    el.value = v;
+  }
+
+  function handlePay(e) {
+    const href = e.currentTarget.getAttribute('href');
+    if (href.includes('VOTRE_LIEN_STRIPE')) {
+      e.preventDefault();
+      const name    = document.getElementById('inp-name').value.trim();
+      const email   = document.getElementById('inp-email').value.trim();
+      const card    = document.getElementById('inp-card').value.replace(/\s/g,'');
+      const brief   = document.getElementById('brief-name').value.trim();
+      const resto   = document.getElementById('brief-resto').value.trim();
+      const loc     = document.getElementById('brief-location').value.trim();
+      const desc    = document.getElementById('brief-desc').value.trim();
+      if (!name || !email || card.length < 16) {
+        alert('⚠️ Veuillez remplir vos informations de paiement.');
+        return;
+      }
+      if (!brief || !resto || !loc || !desc) {
+        alert('⚠️ Veuillez remplir les informations de votre restaurant.');
+        return;
+      }
+      document.getElementById('success-overlay').classList.add('show');
+    }
+  }
+</script>
+</body>
+</html>

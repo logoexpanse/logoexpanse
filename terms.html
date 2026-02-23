@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Conditions d'utilisation | Logoexpanse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600;9..40,700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --black: #0a0a0a; --white: #fff; --cream: #faf9f6; --off-white: #f5f4f0;
+    --gray: #6b6b6b; --border: #e0ddd6; --accent: #c8fb4a;
+    --font-serif: 'Instrument Serif', Georgia, serif;
+    --font-sans: 'DM Sans', system-ui, sans-serif;
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: var(--font-sans); background: var(--white); color: var(--black); line-height: 1.7; }
+
+  /* NAV */
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    background: rgba(255,255,255,0.96); backdrop-filter: blur(14px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 48px; display: flex; align-items: center; justify-content: space-between; height: 64px;
+  }
+  .nav-logo { font-family: var(--font-serif); font-size: 22px; font-weight: 400; color: var(--black); text-decoration: none; }
+  .nav-back { color: var(--gray); text-decoration: none; font-size: 14px; display: flex; align-items: center; gap: 6px; transition: color 0.2s; }
+  .nav-back:hover { color: var(--black); }
+
+  /* HERO */
+  .page-hero {
+    background: var(--black); color: var(--white); padding: 80px 48px 60px;
+  }
+  .page-hero .tag {
+    display: inline-block; background: var(--accent); color: var(--black);
+    padding: 4px 14px; border-radius: 100px; font-size: 11px; font-weight: 700;
+    text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 24px;
+  }
+  .page-hero h1 {
+    font-family: var(--font-serif); font-size: clamp(36px, 5vw, 60px);
+    font-weight: 400; line-height: 1.1; letter-spacing: -0.02em; margin-bottom: 16px;
+  }
+  .page-hero .updated { font-size: 13px; color: rgba(255,255,255,0.45); }
+
+  /* LAYOUT */
+  .page-layout { display: grid; grid-template-columns: 260px 1fr; gap: 0; max-width: 1100px; margin: 0 auto; padding: 60px 48px 100px; }
+  .sidebar { position: sticky; top: 88px; align-self: start; padding-right: 48px; }
+  .sidebar nav ul { list-style: none; display: flex; flex-direction: column; gap: 4px; }
+  .sidebar nav ul li a {
+    display: block; padding: 8px 12px; border-radius: 8px; font-size: 13px;
+    color: var(--gray); text-decoration: none; transition: all 0.2s; font-weight: 500;
+  }
+  .sidebar nav ul li a:hover { background: var(--off-white); color: var(--black); }
+  .sidebar-label { font-size: 11px; text-transform: uppercase; letter-spacing: 0.12em; color: #aaa; font-weight: 600; padding: 0 12px; margin-bottom: 10px; }
+  .content { max-width: 740px; }
+
+  /* TYPOGRAPHY */
+  .content h2 {
+    font-family: var(--font-serif); font-size: 28px; font-weight: 400;
+    letter-spacing: -0.01em; margin: 52px 0 16px; padding-top: 8px;
+    border-top: 1px solid var(--border); color: var(--black);
+  }
+  .content h2:first-child { border-top: none; margin-top: 0; }
+  .content h3 { font-size: 16px; font-weight: 700; margin: 28px 0 10px; color: var(--black); }
+  .content p { font-size: 15px; color: #333; margin-bottom: 16px; line-height: 1.75; }
+  .content ul, .content ol { padding-left: 24px; margin-bottom: 16px; }
+  .content ul li, .content ol li { font-size: 15px; color: #333; margin-bottom: 8px; line-height: 1.7; }
+  .content strong { font-weight: 700; color: var(--black); }
+  .content a { color: var(--black); text-decoration: underline; }
+
+  /* INFO BOXES */
+  .info-box {
+    background: var(--off-white); border-left: 3px solid var(--black);
+    padding: 18px 22px; border-radius: 0 8px 8px 0; margin: 20px 0; font-size: 14px; color: #333;
+  }
+  .info-box.accent { border-left-color: var(--accent); background: rgba(200,251,74,0.08); }
+  .info-box.warning { border-left-color: #f59e0b; background: rgba(245,158,11,0.06); }
+  .info-box strong { display: block; margin-bottom: 6px; font-size: 13px; text-transform: uppercase; letter-spacing: 0.08em; }
+
+  /* PROMISE BOX */
+  .promise-box {
+    background: var(--black); color: var(--white); padding: 40px; border-radius: 16px;
+    margin: 52px 0 0; text-align: center;
+  }
+  .promise-box h3 { font-family: var(--font-serif); font-size: 24px; font-weight: 400; margin-bottom: 14px; }
+  .promise-box p { color: rgba(255,255,255,0.65); font-size: 15px; line-height: 1.7; max-width: 480px; margin: 0 auto; }
+
+  /* FOOTER */
+  .page-footer {
+    background: var(--off-white); border-top: 1px solid var(--border);
+    padding: 32px 48px; display: flex; align-items: center; justify-content: space-between;
+    font-size: 13px; color: var(--gray); flex-wrap: wrap; gap: 12px;
+  }
+  .page-footer a { color: var(--gray); text-decoration: none; transition: color 0.2s; }
+  .page-footer a:hover { color: var(--black); }
+  .footer-links { display: flex; gap: 24px; }
+
+  @media(max-width:768px){
+    nav { padding: 0 20px; }
+    .page-hero { padding: 60px 20px 40px; }
+    .page-layout { grid-template-columns: 1fr; padding: 40px 20px 80px; }
+    .sidebar { display: none; }
+    .page-footer { padding: 24px 20px; }
+  }
+</style>
+</head>
+<body>
+
+<nav>
+  <a href="index.html" class="nav-logo">Logoexpanse</a>
+  <a href="index.html" class="nav-back">← Retour au site</a>
+</nav>
+
+<div class="page-hero">
+  <div class="tag">Légal</div>
+  <h1>Conditions d'utilisation</h1>
+  <div class="updated">Dernière mise à jour : 22 septembre 2025</div>
+</div>
+
+<div class="page-layout">
+  <aside class="sidebar">
+    <div class="sidebar-label">Sommaire</div>
+    <nav>
+      <ul>
+        <li><a href="#s1">1. Validation du concept</a></li>
+        <li><a href="#s2">2. Garantie de remboursement</a></li>
+        <li><a href="#s3">3. Remboursements partiels</a></li>
+        <li><a href="#s4">4. Situations non remboursables</a></li>
+        <li><a href="#s5">5. Inactivité client</a></li>
+        <li><a href="#s6">6. Ajustements post-livraison</a></li>
+        <li><a href="#s7">7. Avant tout remboursement</a></li>
+        <li><a href="#s8">8. Traitement des remboursements</a></li>
+        <li><a href="#s9">9. Demander un remboursement</a></li>
+      </ul>
+    </nav>
+  </aside>
+
+  <div class="content">
+
+    <p>Chez Logoexpanse, nous souhaitons que vous commandiez votre logo en toute confiance. C'est pourquoi nous offrons une garantie de satisfaction — si vous n'êtes pas satisfait, vous êtes protégé.</p>
+
+    <h2 id="s1">1. Validation du concept</h2>
+    <p>Un concept est considéré comme validé lorsque le client confirme explicitement l'approbation du concept initial, soit par :</p>
+    <ul>
+      <li>Une confirmation par e-mail, ou</li>
+      <li>La soumission d'un formulaire de révision avec une note de 6 points ou plus.</li>
+    </ul>
+    <p>La validation confirme que la direction créative est sur la bonne voie. Des révisions peuvent toujours être demandées dans le cadre du processus de projet.</p>
+
+    <h2 id="s2">2. Garantie de remboursement intégral (Design de logo uniquement)</h2>
+    <p>Vous pouvez demander un remboursement intégral à 100% si vous n'êtes pas satisfait de votre design de logo :</p>
+    <h3>Avant la validation du concept</h3>
+    <p>Vous pouvez demander un remboursement intégral à tout moment avant d'approuver le concept initial.</p>
+    <h3>Après la validation du concept</h3>
+    <p>Vous pouvez demander un remboursement intégral dans les 7 jours calendaires suivant la validation, à condition que les fichiers finaux n'aient pas été livrés ou utilisés.</p>
+    <div class="info-box accent">
+      <strong>✦ Sans questions posées</strong>
+      Notre priorité est de vous assurer de travailler avec nous en toute sérénité.
+    </div>
+    <div class="info-box warning">
+      <strong>⚠ Notes importantes</strong>
+      Pour tous les packages (Design de logo et Écosystème de Marque), une fois le package final livré, le projet est considéré comme terminé et n'est plus remboursable, que les fichiers aient été téléchargés ou non, car l'accès complet aux assets a été accordé.<br><br>
+      Le package L'Écosystème de Marque est un livrable entièrement personnalisé et donc non remboursable une fois la production commencée. La production démarre immédiatement après la soumission du formulaire Écosystème de Marque et le démarrage du travail par notre équipe.
+    </div>
+
+    <h2 id="s3">3. Remboursements partiels (Design de logo uniquement)</h2>
+    <p>Si plus de 7 jours se sont écoulés depuis la validation du concept, vous pouvez être éligible à un remboursement partiel :</p>
+    <ul>
+      <li>Les demandes faites entre 7 et 14 jours après la validation peuvent donner droit à un remboursement de 40 à 60%, selon l'avancement du projet :
+        <ul>
+          <li>1 à 2 cycles de révision complétés → jusqu'à 60% de remboursement</li>
+          <li>3 à 4 cycles de révision complétés → jusqu'à 40% de remboursement</li>
+        </ul>
+      </li>
+      <li>Les demandes faites après 14 jours mais avant la livraison du package final seront examinées au cas par cas, avec une éligibilité limitée.</li>
+    </ul>
+    <p>Les packages Écosystème de Marque ne sont pas éligibles aux remboursements partiels. Dans la mesure du possible, nous pouvons également proposer des concepts bonus, des options de redesign ou des crédits futurs.</p>
+
+    <h2 id="s4">4. Situations non remboursables</h2>
+    <p>Les remboursements ne peuvent pas être accordés dans les conditions suivantes :</p>
+    <ul>
+      <li>14 jours ou plus se sont écoulés depuis la validation du concept (design de logo)</li>
+      <li>Les fichiers finaux du logo ou de l'Écosystème de Marque ont été livrés, approuvés, consultés ou téléchargés</li>
+      <li>Cinq cycles de révision ou plus ont été complétés</li>
+      <li>Le projet est retardé en raison de l'absence de réponse du client pendant 7 jours ou plus, après trois tentatives de contact de notre équipe</li>
+    </ul>
+    <div class="info-box">
+      <strong>Exceptions</strong>
+      Logoexpanse prendra sa responsabilité en cas de plagiat de design avéré ou d'erreur technique majeure, telle que des fichiers corrompus, des assets manquants ou des formats incorrects.
+    </div>
+
+    <h2 id="s5">5. Inactivité client / Clôture de commande</h2>
+    <p>Si le client ne répond pas, n'approuve pas les concepts ou ne fournit pas les retours nécessaires dans les 20 jours calendaires, le projet sera marqué comme terminé après trois tentatives de contact. Après la clôture automatique :</p>
+    <ul>
+      <li>Le travail sera livré en l'état.</li>
+      <li>Aucune révision supplémentaire ni remboursement automatique ne sera accordé.</li>
+    </ul>
+    <p>Cela garantit une gestion de projet efficace et équitable pour tous nos clients.</p>
+
+    <h2 id="s6">6. Ajustements post-livraison finale</h2>
+    <p>Une fois le package logo final ou les livrables de l'Écosystème de Marque livrés, toute modification supplémentaire ou nouvelle demande nécessitera des frais additionnels, car elle sort du périmètre du projet initial.</p>
+
+    <h2 id="s7">7. Avant tout remboursement, nous essaierons toujours de résoudre le problème</h2>
+    <p>Notre objectif est de livrer un logo que vous adorez. Avant de traiter un remboursement, nous pouvons proposer :</p>
+    <ul>
+      <li>L'affectation d'un designer différent</li>
+      <li>Des concepts de logo bonus ou des directions créatives supplémentaires</li>
+      <li>Un accompagnement direct d'un Chef de Projet</li>
+    </ul>
+    <p>Ces démarches permettent souvent de résoudre les problèmes rapidement et efficacement.</p>
+
+    <h2 id="s8">8. Comment les remboursements sont traités</h2>
+    <ul>
+      <li>Les remboursements sont effectués sur le moyen de paiement original.</li>
+      <li>Le délai de traitement dépend de votre banque ou prestataire de paiement.</li>
+      <li>Chaque remboursement est enregistré dans le dossier de votre projet pour la transparence.</li>
+    </ul>
+
+    <h2 id="s9">9. Comment demander un remboursement</h2>
+    <p>Pour soumettre une demande de remboursement, veuillez contacter notre équipe en fournissant :</p>
+    <ul>
+      <li>Le nom de votre restaurant ou entreprise</li>
+      <li>Une brève explication du problème rencontré</li>
+    </ul>
+    <p>Envoyez votre demande à : <a href="mailto:Logoexpanse@gmail.com"><strong>Logoexpanse@gmail.com</strong></a></p>
+    <p>Nous examinerons votre demande rapidement et travaillerons à la meilleure solution.</p>
+
+    <div class="promise-box">
+      <h3>Notre engagement envers vous</h3>
+      <p>Vous ne serez jamais coincé avec un design que vous n'aimez pas. Que ce soit via des concepts supplémentaires, un autre designer ou un remboursement, nous veillerons toujours à ce que votre marque de restaurant reçoive la direction créative qui lui convient.</p>
+    </div>
+
+  </div>
+</div>
+
+<footer class="page-footer">
+  <span>© Logoexpanse 2025. Tous droits réservés.</span>
+  <div class="footer-links">
+    <a href="index.html">Accueil</a>
+    <a href="refund.html">Politique de remboursement</a>
+    <a href="mailto:Logoexpanse@gmail.com">Logoexpanse@gmail.com</a>
+    <a href="https://www.instagram.com/Logoexpanse" target="_blank">@Logoexpanse</a>
+  </div>
+</footer>
+
+</body>
+</html>
